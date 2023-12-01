@@ -18,7 +18,9 @@ public class Player : MonoBehaviour
     public float hitForce = 3;
 
     private bool attacking;
+    private bool attackHit;
     private float force;
+    private bool collidingWithEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +51,25 @@ public class Player : MonoBehaviour
     {
         // MOVEMENT
         float input = Input.GetAxis(axis);
-        input += force;
+
+        // prevent attack movement when the attack hits
+        if(attacking && !attackHit)
+        {
+            input += force;
+        }
+
+        if(collidingWithEnemy)
+        {
+            if(attackDirection > 0 && input > 0)
+            {
+                input = 0;
+            }
+            if(attackDirection < 0 && input < 0)
+            {
+                input = 0;
+            }
+
+        }
 
         player.Translate(new Vector3(input * speed, 0, 0));
 
@@ -77,8 +97,10 @@ public class Player : MonoBehaviour
         attacking = true;
         sword.SetActive(true);
         yield return new WaitForSeconds(0.2f);
-        attacking = false;
         sword.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        attacking = false;
+        attackHit = false;
     }
 
     private IEnumerator ApplyForce(float force, float time)
@@ -93,8 +115,30 @@ public class Player : MonoBehaviour
         Debug.Log("Collission with " + other.name);
         if(other.tag == "weapon")
         {
-            Debug.Log("Aplicando fuerza en " + gameObject.name);
+            Debug.Log("Applying force to " + gameObject.name);
             StartCoroutine(ApplyForce(hitForce * -attackDirection, 0.2f));
+        }
+        if(other.tag == "Player")
+        {
+            if(attacking)
+            {
+                attackHit = true;
+            }
+            else
+            {
+                collidingWithEnemy = true;
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            //if(attacking)
+            {
+                collidingWithEnemy = false;
+            }
         }
     }
 }
