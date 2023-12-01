@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [Range(-1, 1)]
     public int attackDirection = 1;
     public float strikeForce = 3;
+    public float hitForce = 3;
 
     private bool attacking;
     private float force;
@@ -89,6 +90,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
+        Debug.Log("Collission with " + other.name);
+        if(other.tag == "weapon")
+        {
+            Debug.Log("Aplicando fuerza en " + gameObject.name);
+            StartCoroutine(ApplyForce(hitForce * -attackDirection, 0.2f));
+        }
     }
 }
