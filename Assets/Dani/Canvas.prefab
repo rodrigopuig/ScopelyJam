@@ -3357,7 +3357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a49837f178b444aa8f2c07678b79eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeTimeDuration: 0.15
+  freezeTimeDuration: 0.2
   bulletTimeSpeed: 0.15
 --- !u!114 &5726772511791873112
 MonoBehaviour:

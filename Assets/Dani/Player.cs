@@ -205,9 +205,9 @@ public class Player : MonoBehaviour
 
         if (cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
-            //Debug.Log("GAME OVER");
-            //Time.timeScale = 0.00001f;
-            //GameController.instance.NextRound(this);
+            Debug.Log("GAME OVER");
+            Time.timeScale = 0.00001f;
+            GameController.instance.NextRound(this);
         }
     }
 
@@ -284,7 +284,6 @@ public class Player : MonoBehaviour
         parrying = true;
         yield return new WaitUntil(() => waitParry);
         waitParry = false;
-        ParticleManager.Instance.SpawnBlockParticles(transform.position);
         sword.SetActive(true);
         parryImage.fillAmount = 0;
         parryImage.color = parryCDColor;
@@ -323,6 +322,8 @@ public class Player : MonoBehaviour
                 {
                     // Debug.Log("Applying parry push to " + gameObject.name);
                     otherPlayer.ApplyParry();
+                    ParticleManager.Instance.SpawnBlockParticles(transform.position);
+                    FreezeFrameManager.FreezeFrame();
                     StartCoroutine(ApplyExternalForce(parryForce * -attackDirection, 0.2f));
                 }
                 else if (otherPlayer.attacking && !parrying)
