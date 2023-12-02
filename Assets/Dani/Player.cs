@@ -204,10 +204,10 @@ public class Player : MonoBehaviour
         }
 
         if (cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
-        {
+        { /*
             Debug.Log("GAME OVER");
             Time.timeScale = 0.00001f;
-            GameController.instance.NextRound(this);
+            GameController.instance.NextRound(this);*/
         }
     }
 
@@ -330,7 +330,8 @@ public class Player : MonoBehaviour
                 {
                     // Debug.Log("Applying force to " + gameObject.name);
                     FreezeFrameManager.FreezeFrame();
-                    ParticleManager.Instance.SpawnHitParticles(transform.position);
+                    //ParticleManager.Instance.SpawnHitParticles(transform.position);
+                    ParticleManager.Instance.SpawnFishParticles(transform.position);
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
                 }
             }
