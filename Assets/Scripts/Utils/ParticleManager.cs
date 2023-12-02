@@ -38,7 +38,7 @@ public class ParticleManager : MonoBehaviour
 
     private void SpawnParticles(GameObject original, Vector3 pos)
     {
-        GameObject particles = Instantiate(hitParticles, transform);
+        GameObject particles = Instantiate(original, transform);
         particles.transform.position = pos;
     }
 
