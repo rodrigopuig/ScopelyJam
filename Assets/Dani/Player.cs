@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     private float internalForce;
     private float externalForce;
     private bool collidingWithEnemy;
+    private bool collidingWithWall;
     private Collider selfCollider;
     private Collider weaponCollider;
     private Animator animator;
@@ -120,6 +121,18 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (collidingWithWall)
+        {
+            if (attackDirection < 0 && input > 0)
+            {
+                input = 0;
+            }
+            if (attackDirection > 0 && input < 0)
+            {
+                input = 0;
+            }
+        }
+
         animator.SetFloat("speed", Mathf.Abs(input + localExternalForce + localInternalForce));
 
         player.Translate(new Vector3((input + localExternalForce + localInternalForce) * speed, 0, 0));
@@ -135,7 +148,7 @@ public class Player : MonoBehaviour
 
         if(cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
-            Debug.Log("GAME OVER");
+            // Debug.Log("GAME OVER");
             //Time.timeScale = 0;
         }
     }
@@ -161,7 +174,7 @@ public class Player : MonoBehaviour
     {
         sword.GetComponent<Renderer>().material.color = attackCDColor;
         animator.Play("Attack");
-        Debug.Log("Attacking");
+        // Debug.Log("Attacking");
 
         attacking = true;
         yield return new WaitUntil(() => waitAttack);
@@ -182,7 +195,7 @@ public class Player : MonoBehaviour
     {
         sword.GetComponent<Renderer>().material.color = parryCDColor;
         animator.Play("Parry");
-        Debug.Log("Parrying");
+        // Debug.Log("Parrying");
 
         parrying = true;
         yield return new WaitUntil(() => waitParry);
@@ -213,7 +226,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collission with " + other.name);
+        // Debug.Log("Collission with " + other.name);
         if(other.tag == "weapon")
         {
             //if(weaponCollider.bounds.Intersects(other.bounds))
@@ -221,18 +234,18 @@ public class Player : MonoBehaviour
                 Player otherPlayer = other.GetComponentInParent<Player>();
                 if(otherPlayer.parrying && attacking)
                 {
-                    Debug.Log("Applying parry push to " + gameObject.name);
+                    // Debug.Log("Applying parry push to " + gameObject.name);
                     otherPlayer.ApplyParry();
                     StartCoroutine(ApplyExternalForce(parryForce * -attackDirection, 0.2f));
                 }
                 else if (otherPlayer.attacking && !parrying)
                 {
-                    Debug.Log("Applying force to " + gameObject.name);
+                    // Debug.Log("Applying force to " + gameObject.name);
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
                 }
             }
         }
-        if(other.tag == "Player")
+        else if(other.tag == "Player")
         {
             if(attacking)
             {
@@ -241,8 +254,16 @@ public class Player : MonoBehaviour
 
             if (selfCollider.bounds.Intersects(other.bounds))
             {
-                Debug.Log("collidingWithEnemy true");
+                // Debug.Log("collidingWithEnemy true");
                 collidingWithEnemy = true;
+            }
+        }
+        else if(other.tag == "wall")
+        {
+            if (selfCollider.bounds.Intersects(other.bounds))
+            {
+                // Debug.Log("collidingWithWall true");
+                collidingWithWall = true;
             }
         }
     }
@@ -251,8 +272,13 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("collidingWithEnemy false");
+            // Debug.Log("collidingWithEnemy false");
             collidingWithEnemy = false;
+        }
+        else if (other.tag == "wall")
+        {
+            // Debug.Log("collidingWithWall false");
+            collidingWithWall = false;
         }
     }
 }
