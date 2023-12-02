@@ -169,11 +169,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &323095261 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6807654071359057076, guid: 018e9dce847c0f04a9b665ea28e4b2b8, type: 3}
-  m_PrefabInstance: {fileID: 3413433232134335973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &342860733
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,11 +237,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &542081930 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7160143649252726301, guid: 018e9dce847c0f04a9b665ea28e4b2b8, type: 3}
-  m_PrefabInstance: {fileID: 3413433232134335973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &843443776 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8316435882696327058, guid: 018e9dce847c0f04a9b665ea28e4b2b8, type: 3}
@@ -555,6 +545,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 018e9dce847c0f04a9b665ea28e4b2b8, type: 3}
+--- !u!224 &3413433232134335975 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8455367240990227107, guid: 018e9dce847c0f04a9b665ea28e4b2b8, type: 3}
+  m_PrefabInstance: {fileID: 3413433232134335973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3413433232134335980 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9053899167661229921, guid: 018e9dce847c0f04a9b665ea28e4b2b8, type: 3}
+  m_PrefabInstance: {fileID: 3413433232134335973}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8317274491702787654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -586,11 +586,11 @@ PrefabInstance:
     - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
       propertyPath: focusObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 542081930}
+      objectReference: {fileID: 3413433232134335980}
     - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
       propertyPath: focusObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 323095261}
+      objectReference: {fileID: 3413433232134335975}
     - target: {fileID: 5464809393214512770, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
