@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3431906128563729816}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -132,10 +132,9 @@ MonoBehaviour:
   focusObjects:
   - {fileID: 0}
   - {fileID: 0}
-  maxHDistance: 180
-  minHDistance: 130
-  trackingSpeed: 1
-  hMargin: 40
+  maxZPos: -40
+  minZPos: 5
+  hMargin: 10
   zPosCurve:
     serializedVersion: 2
     m_Curve:
@@ -160,6 +159,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  maxXDistance: 80
+  minXDistance: 15
+  foreGroundLayer: {fileID: 0}
+  trackingSpeed: 1
+  foregroundMaxXPos: 160
+  foregroundMaxZPos: -250
+  foregroundMinZPos: -100
 --- !u!81 &1050509466859607789
 AudioListener:
   m_ObjectHideFlags: 0
