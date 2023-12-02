@@ -62,6 +62,20 @@ public class Player : MonoBehaviour
     private float timeSinceLastSweatPs = 0;
     const float timeBetweenSweatPS = 2;
 
+    public List<Material> mats;
+
+    private void Awake()
+    {
+        mats = new List<Material>();
+        SpriteRenderer[] _sprites = GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (var sr in _sprites)
+            mats.Add(sr.material);
+
+        foreach (var mat in mats)
+            mat.SetFloat("_Offset", 0);
+    }
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -332,6 +346,8 @@ public class Player : MonoBehaviour
                     ParticleManager.Instance.SpawnBlockParticles(transform.position);
                     FreezeFrameManager.FreezeFrame();
                     StartCoroutine(ApplyExternalForce(parryForce * -attackDirection, 0.2f));
+
+                    Blink();
                 }
                 else if (otherPlayer.attacking && !parrying)
                 {
@@ -340,6 +356,8 @@ public class Player : MonoBehaviour
                     //ParticleManager.Instance.SpawnHitParticles(transform.position);
                     ParticleManager.Instance.SpawnFishParticles(transform.position);
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
+
+                    Blink();
                 }
             }
         }
@@ -378,5 +396,15 @@ public class Player : MonoBehaviour
             // Debug.Log("collidingWithWall false");
             collidingWithWall = false;
         }
+    }
+
+    public void Blink()
+    {
+        float _value = 0;
+        DOTween.To(() => _value, x => _value = x, 180f, 0.1f).OnUpdate(() =>
+        {
+            foreach (var mat in mats)
+                mat.SetFloat("_Offset", Mathf.Sin(_value * Mathf.Deg2Rad));
+        });
     }
 }
