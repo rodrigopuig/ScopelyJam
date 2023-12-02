@@ -8,16 +8,16 @@ public class CameraManager : MonoBehaviour
     [SerializeField] Transform[] focusObjects;
 
     [Header("Zoom")]
-    [SerializeField] float maxZPos = 0;
-    [SerializeField] float minZPos = 40;
-    [SerializeField] float hMargin = 40;
+    [SerializeField, Tooltip("Cam z pos when players are furthest apart")] float maxZPos = 0;
+    [SerializeField, Tooltip("Cam z pos when players are closest")] float minZPos = 40;
+    [SerializeField, Tooltip("Margin on the side of each player")] float hMargin = 40;
     [SerializeField] AnimationCurve zPosCurve;
-    [SerializeField] float maxHDistance = 180;
-    [SerializeField] float minHDistance = 130;
+    [SerializeField, Tooltip("Max Distance possible between players")] float maxXDistance = 180;
+    [SerializeField, Tooltip("Min Distance possible between players")] float minXDistance = 130;
 
     [Header("Misc"), Space(20)]
     [SerializeField] RectTransform foreGroundLayer;
-    [SerializeField] float trackingSpeed = 4;
+    [SerializeField, Tooltip("Camera tracking speed")] float trackingSpeed = 4;
     [SerializeField] float foregroundMaxXPos = 160;
     [SerializeField] float foregroundMaxZPos = -250;
     [SerializeField] float foregroundMinZPos = -100;
@@ -65,7 +65,7 @@ public class CameraManager : MonoBehaviour
         }
 
         currentHDistance = Vector3.Distance(furthestLeft, furthestRight) + hMargin;
-        distanceRatio = Mathf.InverseLerp(minHDistance, maxHDistance, currentHDistance); //1 = furthest apart, 0 = closest
+        distanceRatio = Mathf.InverseLerp(minXDistance, maxXDistance, currentHDistance); //1 = furthest apart, 0 = closest
 
         focusCenter = focusCenter / focusObjects.Length;
         focusCenter.x = Mathf.Clamp(focusCenter.x, -maxXPos, maxXPos);
