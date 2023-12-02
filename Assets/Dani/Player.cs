@@ -167,7 +167,20 @@ public class Player : MonoBehaviour
             cargo.Rotate(new Vector3(0, 0, -cargoSpeed * weightMultiplier + recoverSpeed * input + localExternalForce * cargoForceDamp));
         }
 
-        if(cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
+        //Play head animations whenever you arent being hit
+        if (externalForce <= 0)
+        {
+            if (cargo.eulerAngles.z > 225 || cargo.eulerAngles.z < 135)
+            {
+                animator.Play("Head_Fall");
+            }
+            else
+            {
+                animator.Play("Head_Idle");
+            }
+        }
+
+        if (cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
             Debug.Log("GAME OVER");
             Time.timeScale = 0.00001f;
@@ -248,6 +261,7 @@ public class Player : MonoBehaviour
         parrying = true;
         yield return new WaitUntil(() => waitParry);
         waitParry = false;
+        ParticleManager.Instance.SpawnBlockParticles(transform.position);
         sword.SetActive(true);
         parryImage.fillAmount = 0;
         parryImage.color = parryCDColor;
@@ -292,7 +306,7 @@ public class Player : MonoBehaviour
                 {
                     // Debug.Log("Applying force to " + gameObject.name);
                     FreezeFrameManager.FreezeFrame();
-
+                    ParticleManager.Instance.SpawnHitParticles(transform.position);
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
                 }
             }
