@@ -172,6 +172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6934355668909403911, guid: c866d07eb6669da40982eca9119963f0, type: 3}
+      propertyPath: trEnemy
+      value: 
+      objectReference: {fileID: 3988691182226684323}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -190,6 +194,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7221068864262012103}
     m_Modifications:
+    - target: {fileID: 514695202111857937, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
+      propertyPath: trEnemy
+      value: 
+      objectReference: {fileID: 8750975405311718481}
     - target: {fileID: 3854692961361036057, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
       propertyPath: m_Name
       value: Player1

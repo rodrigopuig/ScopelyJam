@@ -9,6 +9,8 @@ using MANUELITO;
 
 public class Player : MonoBehaviour
 {
+    public Transform trEnemy;
+
     public string axis;
     public string fire;
     public string parry;
@@ -160,6 +162,11 @@ public class Player : MonoBehaviour
         animator.SetFloat("speed", Mathf.Abs(input + localExternalForce + localInternalForce));
 
         player.Translate(new Vector3((input + localExternalForce + localInternalForce) * speed, 0, 0));
+
+        if (attackDirection > 0 && player.position.x > (trEnemy.position.x - 1.1f))
+            player.transform.position = new Vector3((trEnemy.position.x - 1.1f), player.position.y, player.position.z);
+        else if(attackDirection < 0 && player.position.x < (trEnemy.position.x + 1.1f))
+            player.transform.position = new Vector3((trEnemy.position.x + 1.1f), player.position.y, player.position.z);
 
         float weightMultiplier = 1;
         if(won)

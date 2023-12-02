@@ -257,6 +257,8 @@ MonoBehaviour:
     imgKey: {fileID: 2097162557}
   - keyCode: 274
     imgKey: {fileID: 1882532948}
+  objectsToDisableOnTutorialClose:
+  - {fileID: 919553519}
 --- !u!1 &59737453
 GameObject:
   m_ObjectHideFlags: 0
