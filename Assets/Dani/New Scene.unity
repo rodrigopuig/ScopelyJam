@@ -220,6 +220,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scenario
       objectReference: {fileID: 0}
+    - target: {fileID: 1249286590660963395, guid: 02109061bdb1155479423c2b56106c09, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.2253854
+      objectReference: {fileID: 0}
+    - target: {fileID: 1249286590660963395, guid: 02109061bdb1155479423c2b56106c09, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.2253854
+      objectReference: {fileID: 0}
+    - target: {fileID: 1249286590660963395, guid: 02109061bdb1155479423c2b56106c09, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.2253854
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
