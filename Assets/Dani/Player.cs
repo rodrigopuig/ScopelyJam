@@ -57,6 +57,9 @@ public class Player : MonoBehaviour
     private bool waitParry;
     private bool updatedBoxes;
 
+    private float timeSinceLastSweatPs = 0;
+    const float timeBetweenSweatPS = 2;
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -112,9 +115,10 @@ public class Player : MonoBehaviour
         float input = Input.GetAxis(axis);
         float localInternalForce = 0;
         float localExternalForce = 0;
+        timeSinceLastSweatPs += Time.deltaTime;
 
         // prevent attack movement when the attack hits
-        if(attacking && !attackHit)
+        if (attacking && !attackHit)
         {
             localInternalForce = internalForce;
         }
@@ -175,14 +179,25 @@ public class Player : MonoBehaviour
             cargo.Rotate(new Vector3(0, 0, -cargoSpeed * weightMultiplier + recoverSpeed * input + localExternalForce * cargoForceDamp));
         }
 
-        //Play head animations whenever you arent being hit
-        if (externalForce <= 0)
+
+
+        if (cargo.eulerAngles.z > 225 || cargo.eulerAngles.z < 135)
         {
-            if (cargo.eulerAngles.z > 225 || cargo.eulerAngles.z < 135)
+            if (timeSinceLastSweatPs > timeBetweenSweatPS)
+            {
+                timeSinceLastSweatPs = 0;
+                ParticleManager.Instance.SpawnSweatParticles(transform.position);
+            }
+            //Play head animations whenever you arent being hit
+            if (externalForce <= 0)
             {
                 animator.Play("Head_Fall");
             }
-            else
+        }
+        else
+        {
+            //Play head animations whenever you arent being hit
+            if (externalForce <= 0)
             {
                 animator.Play("Head_Idle");
             }
@@ -313,7 +328,7 @@ public class Player : MonoBehaviour
                 else if (otherPlayer.attacking && !parrying)
                 {
                     // Debug.Log("Applying force to " + gameObject.name);
-                    FreezeFrameManager.FreezeFrame();
+                    FreezeFrameManager.BulletTime();
                     ParticleManager.Instance.SpawnHitParticles(transform.position);
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
                 }
