@@ -7,8 +7,8 @@ public class DataUtils
     public const string playerName1 = "player1_name";
     public const string playerName2 = "player2_name";
 
-    public const string playerScore1 = "player1_name";
-    public const string playerScore2 = "player2_name";
+    public const string playerScore1 = "player1_score";
+    public const string playerScore2 = "player2_score";
 
     public const string scores = "scores"; //array serializado
 

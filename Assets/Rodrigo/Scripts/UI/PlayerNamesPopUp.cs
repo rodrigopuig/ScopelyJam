@@ -63,13 +63,17 @@ public class PlayerNamesPopUp : MonoBehaviour
     private void Update()
     {
         if(!string.IsNullOrEmpty(if_player1.text) &&
-            !string.IsNullOrEmpty(if_player2.text) && !isButtonShown)
+            !string.IsNullOrEmpty(if_player2.text) &&
+            if_player1.text != if_player2.text &&
+            !isButtonShown)
         {
             isButtonShown = true;
             ShowButton();
         }
         else if(string.IsNullOrEmpty(if_player1.text) ||
-            string.IsNullOrEmpty(if_player2.text) && isButtonShown)
+            string.IsNullOrEmpty(if_player2.text) ||
+            if_player1.text == if_player2.text
+            && isButtonShown)
         {
             isButtonShown = false;
             HideButton();
@@ -78,15 +82,19 @@ public class PlayerNamesPopUp : MonoBehaviour
 
     void ShowButton()
     {
+        DOTween.Kill(GetInstanceID());
+
         rtContinueButton.gameObject.SetActive(true);
         rtContinueButton.anchoredPosition = Vector2.zero;
-        rtContinueButton.DOAnchorPosX(560, .4f);
+        rtContinueButton.DOAnchorPosX(560, .4f).SetId(GetInstanceID());
     }
 
     void HideButton()
     {
+        DOTween.Kill(GetInstanceID());
+
         rtContinueButton.gameObject.SetActive(true);
-        rtContinueButton.DOAnchorPosX(0, .2f).OnComplete(()=>rtContinueButton.gameObject.SetActive(false));
+        rtContinueButton.DOAnchorPosX(0, .2f).OnComplete(()=>rtContinueButton.gameObject.SetActive(false)).SetId(GetInstanceID());
     }
 
     public void PressButton()

@@ -19,7 +19,7 @@ public class Menu : MonoBehaviour
     private void Awake()
     {
         credits.onHide += ()=> Show();
-        popUp.onHide += () => Hide();
+        popUp.onHide += () => Show();
 
         rtPlayButton.anchoredPosition = new Vector2(305f, rtPlayButton.anchoredPosition.y);
         rtCreditsButton.anchoredPosition = new Vector2(-224, rtCreditsButton.anchoredPosition.y);

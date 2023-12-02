@@ -18,13 +18,17 @@ namespace Rodrigo
 
         public TextMeshProUGUI txtRound;
 
+
         int currentRound;
+
+        private void Awake()
+        {
+            Tutorial.onCloseTutorial += StartGame;
+        }
 
         IEnumerator Start()
         {
             yield return null;
-
-            PlayTxtRoundAnimation();
         }
 
         public void Update()
@@ -41,10 +45,15 @@ namespace Rodrigo
             UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneName);
         }
 
+        void StartGame()
+        {
+            PlayTxtRoundAnimation();
+        }
+
         public void NextRound()
         {
             currentRound++;
-            txtRound.text = $"ROUND {currentRound+1}";
+            txtRound.text = $"ROUND {currentRound + 1}";
             StartCoroutine(CoroutineUtils.DoAfterFrames(1, PlayTxtRoundAnimation));
 
             onNextRound?.Invoke(currentRound);
@@ -58,8 +67,8 @@ namespace Rodrigo
             _rtText.anchoredPosition = new Vector2(Screen.width, _rtText.anchoredPosition.y);
             Sequence _sequence = DOTween.Sequence()
                 .Append(_rtText.DOAnchorPosX(0, 0.5f).SetEase(Ease.OutBack))
-                .Append(_rtText.DOAnchorPosX(-Screen.width , 0.5f).SetDelay(1f));
-            
+                .Append(_rtText.DOAnchorPosX(-Screen.width, 0.5f).SetDelay(1f));
+
         }
     }
 }
