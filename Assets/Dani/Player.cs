@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +26,15 @@ public class Player : MonoBehaviour
     public float strikeForce = 3;
     public float hitForce = 3;
     public float parryForce = 5;
+    public float cargoForceDamp = 0.5f;
+
+    [Header("UI")]
+    public UnityEngine.UI.Image attackImage;
+    public Color attackColor;
+    public Color attackCDColor;
+    public UnityEngine.UI.Image parryImage;
+    public Color parryColor;
+    public Color parryCDColor;
 
     [HideInInspector] public bool parrying;
 
@@ -48,6 +60,11 @@ public class Player : MonoBehaviour
         weaponCollider = sword.GetComponent<Collider>();
 
         cargo.Rotate(new Vector3(0, 0, initialIncline));
+
+        attackImage.fillAmount = 1;
+        parryImage.fillAmount = 1;
+        attackImage.color = attackColor;
+        parryImage.color = parryColor;
     }
 
     void Update()
@@ -58,7 +75,7 @@ public class Player : MonoBehaviour
             if(!attacking && sword.activeSelf == false)
             {
                 StartCoroutine(AttackRoutine());
-                StartCoroutine(ApplyExternalForce(strikeForce * attackDirection, 0.2f));
+                StartCoroutine(ApplyInternalForce(strikeForce * attackDirection, 0.2f));
             }
         }
         
@@ -76,14 +93,18 @@ public class Player : MonoBehaviour
     {
         // MOVEMENT
         float input = Input.GetAxis(axis);
+        float localInternalForce = 0;
+        float localExternalForce = 0;
 
         // prevent attack movement when the attack hits
         if(attacking && !attackHit)
         {
-            input += internalForce;
+            localInternalForce = internalForce;
+            // input += internalForce;
         }
 
-        input += externalForce;
+        // input += externalForce;
+        localExternalForce = externalForce;
 
         if(collidingWithEnemy)
         {
@@ -98,15 +119,15 @@ public class Player : MonoBehaviour
 
         }
 
-        player.Translate(new Vector3(input * speed, 0, 0));
+        player.Translate(new Vector3((input + localExternalForce + localInternalForce) * speed, 0, 0));
 
         if(cargo.eulerAngles.z > 180)
         {
-            cargo.Rotate(new Vector3(0, 0, cargoSpeed + recoverSpeed * input));
+            cargo.Rotate(new Vector3(0, 0, cargoSpeed + recoverSpeed * (input + localExternalForce * cargoForceDamp)));
         }
         else
         {
-            cargo.Rotate(new Vector3(0, 0, -cargoSpeed + recoverSpeed * input));
+            cargo.Rotate(new Vector3(0, 0, -cargoSpeed + recoverSpeed * input + localExternalForce * cargoForceDamp));
         }
 
         if(cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
@@ -130,6 +151,9 @@ public class Player : MonoBehaviour
 
         attacking = true;
         sword.SetActive(true);
+        attackImage.fillAmount = 0;
+        attackImage.color = attackCDColor;
+        DOTween.To(() => attackImage.fillAmount, x => attackImage.fillAmount = x, 1, attackTime+attackCD).OnComplete(() => attackImage.color = attackColor);
         yield return new WaitForSeconds(attackTime);
         sword.SetActive(false);
         yield return new WaitForSeconds(attackCD);
@@ -144,6 +168,9 @@ public class Player : MonoBehaviour
 
         parrying = true;
         sword.SetActive(true);
+        parryImage.fillAmount = 0;
+        parryImage.color = parryCDColor;
+        DOTween.To(() => parryImage.fillAmount, x => parryImage.fillAmount = x, 1, parryTime+parryCD).OnComplete(() => parryImage.color = parryColor);
         yield return new WaitForSeconds(parryTime);
         sword.SetActive(false);
         yield return new WaitForSeconds(parryCD);
