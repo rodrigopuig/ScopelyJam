@@ -27,7 +27,7 @@ public class Tutorial : MonoBehaviour
                 input.imgKey.color = Color.green;
             else
                 input.imgKey.color = Color.white;
-        }    
+        }
     }
 
     public void Continue()
