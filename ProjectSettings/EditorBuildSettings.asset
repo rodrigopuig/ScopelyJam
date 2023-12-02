@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Rodrigo/Scenes/Menu.unity
     guid: c827c1d359af446f4982e17365d97c15
   - enabled: 1
-    path: Assets/Rodrigo/Scenes/Game.unity
-    guid: a76ff3a0c94b0453ba459d52a094cd0c
+    path: Assets/Dani/ActionPhase.unity
+    guid: 9a5d86e38a5a78a4ab60e95a48c41db3
   - enabled: 1
     path: Assets/Rodrigo/Scenes/GameFinished.unity
     guid: 15076042c2f024fe486e4eb8a133d845
