@@ -97,10 +97,12 @@ namespace Rodrigo
                 else if(loser == player2)
                 {
                     player1Advantage = true;
+                    player2Advantage = false;
                 }
                 else if(loser == player1)
                 {
                     player2Advantage = true;
+                    player1Advantage = false;
                 }
 
                 Destroy(Players);
@@ -111,6 +113,8 @@ namespace Rodrigo
                 player2.won = player2Advantage;
                 player1.lost = !player2Advantage;
                 player2.lost = !player1Advantage;
+                player1.UpdateBoxes();
+                player2.UpdateBoxes();
 
                 // Debug.Log("FadeOut1");
                 Fader.FadeOut(() =>

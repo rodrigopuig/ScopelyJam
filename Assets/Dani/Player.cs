@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using Rodrigo;
+using MANUELITO;
 
 public class Player : MonoBehaviour
 {
@@ -54,9 +55,10 @@ public class Player : MonoBehaviour
     private Animator animator;
     private bool waitAttack;
     private bool waitParry;
+    private bool updatedBoxes;
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         sword.SetActive(false);
 
@@ -76,6 +78,10 @@ public class Player : MonoBehaviour
         parryImage.fillAmount = 1;
         attackImage.color = attackColor;
         parryImage.color = parryColor;
+
+        yield return null;
+        
+        UpdateBoxes();
     }
 
     void Update()
@@ -164,9 +170,29 @@ public class Player : MonoBehaviour
         if(cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
             Debug.Log("GAME OVER");
-            //Time.timeScale = 0.00001f;
-            //GameController.instance.NextRound(this);
+            Time.timeScale = 0.00001f;
+            GameController.instance.NextRound(this);
         }
+    }
+
+    public void UpdateBoxes()
+    {
+        if (updatedBoxes) return;
+        updatedBoxes = true;
+
+        Debug.Log("Updating boxes lost: " + lost + " won: " + won + " for " + gameObject.name);
+
+        PiledItemsController items = GetComponentInChildren<PiledItemsController>();
+        if(lost)
+        {
+            items.piledItems[2].gameObject.SetActive(false);
+            items.piledItems[1].gameObject.SetActive(true);
+        }
+        else if (!won)
+        {
+            items.piledItems[2].gameObject.SetActive(true);
+        }
+
     }
 
     public void DoAttack()
