@@ -568,6 +568,18 @@ PrefabInstance:
       value: CameraPivot
       objectReference: {fileID: 0}
     - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
+      propertyPath: maxZPos
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
+      propertyPath: minZPos
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
+      propertyPath: trackingSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
       propertyPath: foreGroundLayer
       value: 
       objectReference: {fileID: 986879440}
