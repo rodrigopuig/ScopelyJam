@@ -125,10 +125,14 @@ public class Player : MonoBehaviour
             if(attackDirection > 0 && input > 0)
             {
                 input = 0;
+                localExternalForce = 0;
+                localInternalForce = 0;
             }
             if(attackDirection < 0 && input < 0)
             {
                 input = 0;
+                localExternalForce = 0;
+                localInternalForce = 0;
             }
         }
 
@@ -137,10 +141,14 @@ public class Player : MonoBehaviour
             if (attackDirection < 0 && input > 0)
             {
                 input = 0;
+                localExternalForce = 0;
+                localInternalForce = 0;
             }
             if (attackDirection > 0 && input < 0)
             {
                 input = 0;
+                localExternalForce = 0;
+                localInternalForce = 0;
             }
         }
 
