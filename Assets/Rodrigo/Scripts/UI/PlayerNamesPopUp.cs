@@ -110,7 +110,9 @@ public class PlayerNamesPopUp : MonoBehaviour
         if(inputAllowed)
         {
             inputAllowed = false;
-            Fader.FadeIn(() => StartCoroutine(CoroutineUtils.DoAfterDelay(1f, () => UnityEngine.SceneManagement.SceneManager.LoadScene("Game"))));
+            PlayerPrefs.SetString(DataUtils.playerName1, if_player1.text);
+            PlayerPrefs.SetString(DataUtils.playerName2, if_player2.text);
+            Fader.FadeIn(() => StartCoroutine(CoroutineUtils.DoAfterDelay(1f, () => UnityEngine.SceneManagement.SceneManager.LoadScene("ActionPhase"))));
         }
     }
 }
