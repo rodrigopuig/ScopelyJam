@@ -221,9 +221,9 @@ MonoBehaviour:
   focusObjects:
   - {fileID: 0}
   - {fileID: 0}
-  maxZPos: -12
-  minZPos: 8
-  hMargin: 10
+  maxZPos: -4
+  minZPos: 6
+  hMargin: 7.8
   zPosCurve:
     serializedVersion: 2
     m_Curve:
@@ -248,10 +248,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxXDistance: 40
+  maxXDistance: 28
   minXDistance: 5
+  maxYpos: 2.37
+  minYpos: -0.77
   foreGroundLayer: {fileID: 5738261559034840826}
   trackingSpeed: 4
+  maxXPos: 10
 --- !u!81 &1050509466859607789
 AudioListener:
   m_ObjectHideFlags: 0

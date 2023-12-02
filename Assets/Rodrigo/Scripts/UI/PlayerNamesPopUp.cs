@@ -56,11 +56,15 @@ public class PlayerNamesPopUp : MonoBehaviour
 
         Sequence _sequence = DOTween.Sequence()
             .Insert(0, imgBg.DOFade(0f, 1f))
-            .Insert(0, rtPopUp.DOAnchorPosY(-rtPopUp.sizeDelta.y * 1.2f, 1).SetEase(Ease.OutBack)).OnComplete(() =>
+            .Insert(0, rtContinueButton.DOAnchorPosX(0, .4f).OnComplete(()=> { rtContinueButton.gameObject.SetActive(false); }))
+            .Insert(0.4f, rtPopUp.DOAnchorPosY((-rtPopUp.sizeDelta.y * 1.2f) - Screen.height, 1).SetEase(Ease.OutBack)).OnComplete(() =>
             {
                 onHide?.Invoke();
                 goBtnExit.SetActive(true);
                 canvas.enabled = false;
+                isButtonShown = false;
+                if_player1.text = string.Empty;
+                if_player2.text = string.Empty;
             });
     }
 

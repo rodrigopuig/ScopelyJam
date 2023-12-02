@@ -4,6 +4,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Rodrigo;
 
 public class Player : MonoBehaviour
 {
@@ -148,8 +149,9 @@ public class Player : MonoBehaviour
 
         if(cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
-            // Debug.Log("GAME OVER");
-            //Time.timeScale = 0;
+            Debug.Log("GAME OVER");
+            Time.timeScale = 0.00001f;
+            GameController.instance.NextRound();
         }
     }
 
