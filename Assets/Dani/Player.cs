@@ -164,8 +164,8 @@ public class Player : MonoBehaviour
         if(cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
             Debug.Log("GAME OVER");
-            Time.timeScale = 0.00001f;
-            GameController.instance.NextRound(this);
+            //Time.timeScale = 0.00001f;
+            //GameController.instance.NextRound(this);
         }
     }
 
