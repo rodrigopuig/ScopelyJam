@@ -17,7 +17,7 @@ public class FinishGame : MonoBehaviour
         if (inputAllowed)
         {
             inputAllowed = false;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+            Fader.FadeIn(() => StartCoroutine(CoroutineUtils.DoAfterDelay(1, () => UnityEngine.SceneManagement.SceneManager.LoadScene("Game"))));
         }
     }
 
@@ -26,7 +26,7 @@ public class FinishGame : MonoBehaviour
         if (inputAllowed)
         {
             inputAllowed = false;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+            Fader.FadeIn(() => StartCoroutine(CoroutineUtils.DoAfterDelay(1, () => UnityEngine.SceneManagement.SceneManager.LoadScene("Menu"))));
         }
     }
 }

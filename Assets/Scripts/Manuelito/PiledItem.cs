@@ -8,23 +8,15 @@ namespace MANUELITO
     public class PiledItem : MonoBehaviour
     {
         public float weight = 1;
-        float weightRotFactor = 0.05f;
-        float weightMovFactor = 0.005f;
+        float weightRotFactor = 0.5f;
 
-        const float maxRot = 15;
-        private void Awake()
-        {
-            
-        }
+        [SerializeField] float maxRot = 20;
 
         public void ApplyPhysics(float direction, float factor)
         {
             Vector3 finalRot = transform.localEulerAngles + direction * Vector3.forward * factor * weightRotFactor;
-            finalRot.z = finalRot.z % 360;
-            //finalRot.z = Mathf.Clamp(finalRot.z, -maxRot, maxRot);
+            finalRot.z = Mathf.Clamp(finalRot.z, 180 -maxRot, 180 + maxRot);
             transform.localEulerAngles = finalRot;
-            transform.localPosition = transform.localPosition - direction * Vector3.right * factor * weightMovFactor;
-            GetComponent<Image>().color = finalRot.z > 200 || finalRot.z < 160 ? Color.red : Color.white;
         }
     }
 }
