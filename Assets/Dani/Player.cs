@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public string fire;
     public Transform player;
     public Transform cargo;
+    public float initialIncline = 1;
     public float speed = 1;
     public float recoverSpeed = 0.5f;
     public float cargoSpeed = 0.2f;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     private bool attackHit;
     private float force;
     private bool collidingWithEnemy;
+    private Collider selfCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,10 @@ public class Player : MonoBehaviour
         {
             sword.transform.localPosition = new Vector3(-sword.transform.localPosition.x, sword.transform.localPosition.y, sword.transform.localPosition.z);
         }
+
+        selfCollider = GetComponent<Collider>();
+
+        cargo.Rotate(new Vector3(0, 0, initialIncline));
     }
 
     void Update()
@@ -124,9 +130,10 @@ public class Player : MonoBehaviour
             {
                 attackHit = true;
             }
-            else
+
+            if (selfCollider.bounds.Intersects(other.bounds))
             {
-                Debug.Log("collidingWithEnemy true");
+                // Debug.Log("collidingWithEnemy true");
                 collidingWithEnemy = true;
             }
         }
@@ -134,13 +141,10 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
-            //if(attacking)
-            {
-                Debug.Log("collidingWithEnemy true");
-                collidingWithEnemy = false;
-            }
+            // Debug.Log("collidingWithEnemy false");
+            collidingWithEnemy = false;
         }
     }
 }
