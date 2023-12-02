@@ -269,6 +269,7 @@ public class Player : MonoBehaviour
     private IEnumerator ApplyExternalForce(float force, float time)
     {
         this.externalForce = force;
+        animator.Play("Head_Hit");
         yield return new WaitForSeconds(time);
         this.externalForce = 0;
     }
@@ -290,6 +291,8 @@ public class Player : MonoBehaviour
                 else if (otherPlayer.attacking && !parrying)
                 {
                     // Debug.Log("Applying force to " + gameObject.name);
+                    FreezeFrameManager.FreezeFrame();
+
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
                 }
             }
