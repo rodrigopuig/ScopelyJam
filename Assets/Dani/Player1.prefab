@@ -690,10 +690,10 @@ MonoBehaviour:
   cargoForceDamp: 0.5
   attackImage: {fileID: 5177118602758273805}
   attackColor: {r: 1, g: 0, b: 0, a: 1}
-  attackCDColor: {r: 0.5372549, g: 0, b: 0, a: 1}
+  attackCDColor: {r: 1, g: 0, b: 0, a: 0.5529412}
   parryImage: {fileID: 6836016679913680718}
   parryColor: {r: 1, g: 1, b: 0, a: 1}
-  parryCDColor: {r: 0.56078434, g: 0.56078434, b: 0, a: 1}
+  parryCDColor: {r: 1, g: 1, b: 0, a: 0.50980395}
   parrying: 0
 --- !u!54 &6445865849225166776
 Rigidbody:
@@ -1645,7 +1645,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6bd1dcd37ac018044a3f2ca3f76c23b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

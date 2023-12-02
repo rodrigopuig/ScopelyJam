@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
     private bool collidingWithEnemy;
     private Collider selfCollider;
     private Collider weaponCollider;
+    private Animator animator;
+    private bool waitAttack;
+    private bool waitParry;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +61,8 @@ public class Player : MonoBehaviour
 
         selfCollider = GetComponent<Collider>();
         weaponCollider = sword.GetComponent<Collider>();
+
+        animator = GetComponent<Animator>();
 
         cargo.Rotate(new Vector3(0, 0, initialIncline));
 
@@ -100,10 +105,7 @@ public class Player : MonoBehaviour
         if(attacking && !attackHit)
         {
             localInternalForce = internalForce;
-            // input += internalForce;
         }
-
-        // input += externalForce;
         localExternalForce = externalForce;
 
         if(collidingWithEnemy)
@@ -116,8 +118,9 @@ public class Player : MonoBehaviour
             {
                 input = 0;
             }
-
         }
+
+        animator.SetFloat("speed", Mathf.Abs(input + localExternalForce + localInternalForce));
 
         player.Translate(new Vector3((input + localExternalForce + localInternalForce) * speed, 0, 0));
 
@@ -137,6 +140,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void DoAttack()
+    {
+        waitAttack = true;
+    }
+
+    public void DoParry()
+    {
+        waitParry = true;
+    }
+
     public void ApplyParry()
     {
         //restore attack
@@ -146,15 +159,19 @@ public class Player : MonoBehaviour
 
     private IEnumerator AttackRoutine()
     {
-        sword.GetComponent<Renderer>().material.color = Color.red;
+        sword.GetComponent<Renderer>().material.color = attackCDColor;
+        animator.Play("Attack");
         Debug.Log("Attacking");
 
         attacking = true;
+        yield return new WaitUntil(() => waitAttack);
+        waitAttack = false;
         sword.SetActive(true);
         attackImage.fillAmount = 0;
         attackImage.color = attackCDColor;
         DOTween.To(() => attackImage.fillAmount, x => attackImage.fillAmount = x, 1, attackTime+attackCD).OnComplete(() => attackImage.color = attackColor);
         yield return new WaitForSeconds(attackTime);
+        animator.Play("Torso_Idle");
         sword.SetActive(false);
         yield return new WaitForSeconds(attackCD);
         attacking = false;
@@ -163,10 +180,13 @@ public class Player : MonoBehaviour
 
     private IEnumerator ParryRoutine()
     {
-        sword.GetComponent<Renderer>().material.color = Color.yellow;
+        sword.GetComponent<Renderer>().material.color = parryCDColor;
+        animator.Play("Parry");
         Debug.Log("Parrying");
 
         parrying = true;
+        yield return new WaitUntil(() => waitParry);
+        waitParry = false;
         sword.SetActive(true);
         parryImage.fillAmount = 0;
         parryImage.color = parryCDColor;
