@@ -1793,7 +1793,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: -description-
+  m_text: "\xA1LLevas demasiados peces!, pero ,\xBFson suficientes?\n\xA1Cuidado
+    con tu equilibrio!, logra mantener tus peces en la cesta y evitar que tu rival
+    te tumbe haciendote perder el equilibrio.\r\nSi tumbas al otro jugador conseguir\xE1s
+    parte de sus peces. Deja sin peces a tu rival para ganar.\r\nAl mejor de 3 rondas\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -1820,14 +1823,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2349,7 +2352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2000, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8175508616473392058
@@ -3309,6 +3312,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f52df5828ad4d4b8aa3ba1d53af1ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayersPrefab: {fileID: 0}
+  Players: {fileID: 0}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  player1Advantage: 0
+  player2Advantage: 0
   txtRound: {fileID: 4951933374811340784}
 --- !u!1 &9041134360279179930
 GameObject:
