@@ -14,7 +14,7 @@ public class Leaderboard : MonoBehaviour
     {
         instancedEntries = new List<GameObject>();
 
-        PlayerPrefs.SetString(DataUtils.playerName1, "Javi");
+        /*PlayerPrefs.SetString(DataUtils.playerName1, "Javi");
         PlayerPrefs.SetInt(DataUtils.playerScore1, 12);
 
         PlayerPrefs.SetString(DataUtils.playerName2, "Dani");
@@ -37,7 +37,7 @@ public class Leaderboard : MonoBehaviour
              }
         };
 
-        PlayerPrefs.SetString(DataUtils.scores, JsonUtility.ToJson(scores));
+        PlayerPrefs.SetString(DataUtils.scores, JsonUtility.ToJson(scores));*/
 
         FillInfo();
     }
@@ -129,8 +129,7 @@ public class Leaderboard : MonoBehaviour
             {
                 _found = true;
 
-                if (_entry.score > _allEntries[i].score)
-                    _allEntries[i] = _entry;
+                _allEntries[i].score += _entry.score;
             }
         }
 

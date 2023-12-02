@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using System;
+using Rodrigo;
 
 namespace MANUELITO
 {
@@ -23,7 +24,8 @@ namespace MANUELITO
 
         private void Update()
         {
-            UpdatePiledItems();
+            if(Time.timeScale > 0.1f)
+                UpdatePiledItems();
         }
 
         private void UpdatePiledItems()
