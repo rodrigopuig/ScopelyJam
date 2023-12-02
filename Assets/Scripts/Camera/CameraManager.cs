@@ -11,6 +11,12 @@ public class CameraManager : MonoBehaviour
     [SerializeField] float hMargin = 40;
     [SerializeField] AnimationCurve zPosCurve;
 
+    [Header("Misc"), Space(20)]
+    [SerializeField] RectTransform foreGroundLayer;
+    [SerializeField] float foregroundMaxXPos = 160;
+    [SerializeField] float foregroundMaxZPos = -250;
+    [SerializeField] float foregroundMinZPos = -100;
+
     const float movSpeed = 20;
     const float maxFocusDistance = 0;
     const float minFocusDistance = 40;
@@ -36,9 +42,11 @@ public class CameraManager : MonoBehaviour
 
         float currentHDistance;
         float distanceRatio;
+        float xPosRatio;
         Vector3 furthestLeft = focusObjects[0].position;
         Vector3 furthestRight = focusObjects[1].position;
         Vector3 finalCameraPos = transform.localPosition;
+        Vector3 finalForegroundPos = foreGroundLayer.localPosition;
 
         foreach (Transform t in focusObjects)
         {
@@ -58,6 +66,10 @@ public class CameraManager : MonoBehaviour
 
         focusCenter = focusCenter / focusObjects.Length;
         focusCenter.x = Mathf.Clamp(focusCenter.x, -maxXPos, maxXPos);
+        xPosRatio = Mathf.InverseLerp(-maxXPos, maxXPos, focusCenter.x);
+        finalForegroundPos.z = Mathf.Lerp(foregroundMinZPos, foregroundMaxZPos, distanceRatio);
+        finalForegroundPos.x = Mathf.Lerp(foregroundMaxXPos, -foregroundMaxXPos, xPosRatio);
+        foreGroundLayer.localPosition = finalForegroundPos;
 
         finalCameraPos.x = Mathf.Lerp(focusCenter.x, 0, distanceRatio);
         finalCameraPos.z = Mathf.Lerp(minFocusDistance, maxFocusDistance, zPosCurve.Evaluate(distanceRatio));
