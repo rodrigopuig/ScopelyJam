@@ -59,8 +59,10 @@ public class Player : MonoBehaviour
     private bool waitParry;
     private bool updatedBoxes;
 
-    private float timeSinceLastSweatPs = 0;
-    const float timeBetweenSweatPS = 2;
+    [Header("Particles")]
+    [SerializeField] GameObject sweatParticles;
+    [SerializeField] ParticleSystem fishParticles;
+    [SerializeField] ParticleSystem blockParticles;
 
     public List<Material> mats;
 
@@ -131,7 +133,6 @@ public class Player : MonoBehaviour
         float input = Input.GetAxis(axis);
         float localInternalForce = 0;
         float localExternalForce = 0;
-        timeSinceLastSweatPs += Time.deltaTime;
 
         // prevent attack movement when the attack hits
         if (attacking && !attackHit)
@@ -200,28 +201,16 @@ public class Player : MonoBehaviour
             cargo.Rotate(new Vector3(0, 0, -cargoSpeed * weightMultiplier + recoverSpeed * input + localExternalForce * cargoForceDamp));
         }
 
-
-
-        if (cargo.eulerAngles.z > 225 || cargo.eulerAngles.z < 135)
+        bool sweating = cargo.eulerAngles.z > 225 || cargo.eulerAngles.z < 135;
+        bool beingPushed = externalForce <= 0;
+        sweatParticles.SetActive(sweating);
+        if (sweating && !beingPushed)
         {
-            if (timeSinceLastSweatPs > timeBetweenSweatPS)
-            {
-                timeSinceLastSweatPs = 0;
-                ParticleManager.Instance.SpawnSweatParticles(transform.position);
-            }
-            //Play head animations whenever you arent being hit
-            if (externalForce <= 0)
-            {
-                animator.Play("Head_Fall");
-            }
+            animator.Play("Head_Fall");
         }
-        else
+        else if(!beingPushed)
         {
-            //Play head animations whenever you arent being hit
-            if (externalForce <= 0)
-            {
-                animator.Play("Head_Idle");
-            }
+            animator.Play("Head_Idle");
         }
 
         if (cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
@@ -270,6 +259,7 @@ public class Player : MonoBehaviour
 
     public void ApplyParry()
     {
+        blockParticles.Play();
         //restore attack
         attacking = false;
         attackHit = false;
@@ -333,17 +323,13 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Debug.Log("Collission with " + other.name);
         if(other.tag == "weapon")
         {
-            //if(weaponCollider.bounds.Intersects(other.bounds))
             {
                 Player otherPlayer = other.GetComponentInParent<Player>();
                 if(otherPlayer.parrying && attacking)
                 {
-                    // Debug.Log("Applying parry push to " + gameObject.name);
                     otherPlayer.ApplyParry();
-                    ParticleManager.Instance.SpawnBlockParticles(transform.position);
                     FreezeFrameManager.FreezeFrame();
                     StartCoroutine(ApplyExternalForce(parryForce * -attackDirection, 0.2f));
 
@@ -351,10 +337,8 @@ public class Player : MonoBehaviour
                 }
                 else if (otherPlayer.attacking && !parrying)
                 {
-                    // Debug.Log("Applying force to " + gameObject.name);
                     FreezeFrameManager.FreezeFrame();
-                    //ParticleManager.Instance.SpawnHitParticles(transform.position);
-                    ParticleManager.Instance.SpawnFishParticles(transform.position);
+                    fishParticles.Play();
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
 
                     Blink();
