@@ -8,7 +8,7 @@ using System;
 
 namespace MANUELITO
 {
-    public class Controller : MonoBehaviour
+    public class PiledItemsController : MonoBehaviour
     {
         public List<PiledItem> piledItems = new List<PiledItem>();
         [SerializeField] float weightBalance = 0; //-1 - 1
@@ -21,39 +21,14 @@ namespace MANUELITO
         Transform piledObjectsParent;
         #endregion
 
-        void Start()
-        {
-            piledObjectsParent = gameObject.transform.parent;
-            // foreach (Transform child in piledObjectsParent)
-            // {
-            //     PiledItem piledItem = child.GetComponent<PiledItem>();
-            //     if (piledItem != null)
-            //     {
-            //         piledItems.Add(piledItem);
-            //         totalWeight += piledItem.weight;
-            //     }
-            // }
-        }
-
-
         private void Update()
         {
-            UpdateWeightBalance();
             UpdatePiledItems();
-        }
-
-
-        private void UpdateWeightBalance()
-        {
-            weightBalance = (piledObjectsParent.eulerAngles.z)/ 90;
-            // float ratio = Mathf.InverseLerp(-1, 1, weightBalance);
-            // weightSlider.fillAmount = ratio;
-            // weightSlider.color = Color.Lerp(Color.yellow, Color.green, ratio);
-            // sliderText.text = weightBalance.ToString();
         }
 
         private void UpdatePiledItems()
         {
+            weightBalance = ((transform.localEulerAngles.z - 180)) / 90f;
             int iter = 0;
             float ratio;
             foreach (PiledItem item in piledItems)
