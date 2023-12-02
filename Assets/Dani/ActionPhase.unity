@@ -811,6 +811,36 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_TargetDisplay: 0
+--- !u!114 &2009994985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2983185100560071779, guid: b64edaabbe3b2f24aac14072ca332e8f, type: 3}
+  m_PrefabInstance: {fileID: 1012276513580210495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3a3ba40660a1f48bdc18efa62c35ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2047325410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8874566595636270347, guid: 70465383bc4114347af9edb7e38e5ad4, type: 3}
+  m_PrefabInstance: {fileID: 2051813452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2047325416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047325410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a49837f178b444aa8f2c07678b79eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeTimeDuration: 0.15
+  bulletTimeSpeed: 0.15
 --- !u!1001 &2051813452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1078,7 +1108,7 @@ PrefabInstance:
     - target: {fileID: 8032928825549636817, guid: 70465383bc4114347af9edb7e38e5ad4, type: 3}
       propertyPath: player2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2009994985}
     - target: {fileID: 8032928825549636817, guid: 70465383bc4114347af9edb7e38e5ad4, type: 3}
       propertyPath: PlayersPrefab
       value: 
@@ -1115,6 +1145,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8874566595636270347, guid: 70465383bc4114347af9edb7e38e5ad4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2047325416}
     - targetCorrespondingSourceObject: {fileID: 5107220783816098064, guid: 70465383bc4114347af9edb7e38e5ad4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2006090662}
