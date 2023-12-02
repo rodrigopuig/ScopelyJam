@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Rodrigo/Scenes/Game.unity
     guid: a76ff3a0c94b0453ba459d52a094cd0c
+  - enabled: 1
+    path: Assets/Rodrigo/Scenes/GameFinished.unity
+    guid: 15076042c2f024fe486e4eb8a133d845
   m_configObjects: {}

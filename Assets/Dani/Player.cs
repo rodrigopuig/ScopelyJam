@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
     public float hitForce = 3;
     public float parryForce = 5;
     public float cargoForceDamp = 0.5f;
+    public bool won;
+    public bool lost;
+    public float extraWeightMultiplier = 2;
+    public float lessWeightMultiplier = 0.5f;
 
     [Header("UI")]
     public UnityEngine.UI.Image attackImage;
@@ -138,20 +142,30 @@ public class Player : MonoBehaviour
 
         player.Translate(new Vector3((input + localExternalForce + localInternalForce) * speed, 0, 0));
 
+        float weightMultiplier = 1;
+        if(won)
+        {
+            weightMultiplier = extraWeightMultiplier;
+        }
+        else if(lost)
+        {
+            weightMultiplier = lessWeightMultiplier;
+        }
+
         if(cargo.eulerAngles.z > 180)
         {
-            cargo.Rotate(new Vector3(0, 0, cargoSpeed + recoverSpeed * (input + localExternalForce * cargoForceDamp)));
+            cargo.Rotate(new Vector3(0, 0, cargoSpeed * weightMultiplier + recoverSpeed * (input + localExternalForce * cargoForceDamp)));
         }
         else
         {
-            cargo.Rotate(new Vector3(0, 0, -cargoSpeed + recoverSpeed * input + localExternalForce * cargoForceDamp));
+            cargo.Rotate(new Vector3(0, 0, -cargoSpeed * weightMultiplier + recoverSpeed * input + localExternalForce * cargoForceDamp));
         }
 
         if(cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
             Debug.Log("GAME OVER");
             Time.timeScale = 0.00001f;
-            GameController.instance.NextRound();
+            GameController.instance.NextRound(this);
         }
     }
 
@@ -207,6 +221,7 @@ public class Player : MonoBehaviour
         parryImage.color = parryCDColor;
         DOTween.To(() => parryImage.fillAmount, x => parryImage.fillAmount = x, 1, parryTime+parryCD).OnComplete(() => parryImage.color = parryColor);
         yield return new WaitForSeconds(parryTime);
+        animator.Play("Torso_Idle");
         sword.SetActive(false);
         yield return new WaitForSeconds(parryCD);
         parrying = false;
