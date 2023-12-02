@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
 
     private bool attacking;
     private bool attackHit;
-    private float force;
+    private float internalForce;
+    private float externalForce;
     private bool collidingWithEnemy;
     private Collider selfCollider;
 
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour
             if(!attacking)
             {
                 StartCoroutine(AttackRoutine());
-                StartCoroutine(ApplyForce(strikeForce * attackDirection, 0.2f));
+                StartCoroutine(ApplyExternalForce(strikeForce * attackDirection, 0.2f));
             }
         }
     }
@@ -61,8 +62,10 @@ public class Player : MonoBehaviour
         // prevent attack movement when the attack hits
         if(attacking && !attackHit)
         {
-            input += force;
+            input += internalForce;
         }
+
+        input += externalForce;
 
         if(collidingWithEnemy)
         {
@@ -109,11 +112,18 @@ public class Player : MonoBehaviour
         attackHit = false;
     }
 
-    private IEnumerator ApplyForce(float force, float time)
+    private IEnumerator ApplyInternalForce(float force, float time)
     {
-        this.force = force;
+        this.internalForce = force;
         yield return new WaitForSeconds(time);
-        this.force = 0;
+        this.internalForce = 0;
+    }
+
+    private IEnumerator ApplyExternalForce(float force, float time)
+    {
+        this.externalForce = force;
+        yield return new WaitForSeconds(time);
+        this.externalForce = 0;
     }
 
     void OnTriggerEnter(Collider other)
@@ -121,8 +131,8 @@ public class Player : MonoBehaviour
         // Debug.Log("Collission with " + other.name);
         if(other.tag == "weapon")
         {
-            // Debug.Log("Applying force to " + gameObject.name);
-            StartCoroutine(ApplyForce(hitForce * -attackDirection, 0.2f));
+            Debug.Log("Applying force to " + gameObject.name);
+            StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
         }
         if(other.tag == "Player")
         {
@@ -133,7 +143,7 @@ public class Player : MonoBehaviour
 
             if (selfCollider.bounds.Intersects(other.bounds))
             {
-                // Debug.Log("collidingWithEnemy true");
+                Debug.Log("collidingWithEnemy true");
                 collidingWithEnemy = true;
             }
         }
@@ -143,7 +153,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            // Debug.Log("collidingWithEnemy false");
+            Debug.Log("collidingWithEnemy false");
             collidingWithEnemy = false;
         }
     }
