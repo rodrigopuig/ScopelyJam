@@ -36,6 +36,11 @@ public class Tutorial : MonoBehaviour
         onCloseTutorial?.Invoke();
     }
 
+    private void OnDestroy()
+    {
+        onCloseTutorial = null;
+    }
+
     [System.Serializable]
     public class PlayerUIInput
     {

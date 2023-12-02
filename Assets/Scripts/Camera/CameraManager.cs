@@ -8,22 +8,24 @@ public class CameraManager : MonoBehaviour
     [SerializeField] Transform[] focusObjects;
 
     [Header("Zoom")]
-    [SerializeField, Tooltip("Cam z pos when players are furthest apart")] float maxZPos = -40;
-    [SerializeField, Tooltip("Cam z pos when players are closest")] float minZPos = 5;
-    [SerializeField, Tooltip("Margin on the side of each player")] float hMargin = 10;
+    [SerializeField, Tooltip("Cam z pos when players are furthest apart")] float maxZPos = -4;
+    [SerializeField, Tooltip("Cam z pos when players are closest")] float minZPos = 6;
+    [SerializeField, Tooltip("Margin on the side of each player")] float hMargin = 3;
     [SerializeField] AnimationCurve zPosCurve;
-    [SerializeField, Tooltip("Max Distance possible between players")] float maxXDistance = 80;
-    [SerializeField, Tooltip("Min Distance possible between players")] float minXDistance = 15;
+    [SerializeField, Tooltip("Max Distance possible between players")] float maxXDistance = 28;
+    [SerializeField, Tooltip("Min Distance possible between players")] float minXDistance = 5;
+
+    [Header("Y pos")]
+    [SerializeField] float maxYpos = 2.37f;
+    [SerializeField] float minYpos = -0.77f;
 
     [Header("Misc"), Space(20)]
-    [SerializeField] RectTransform foreGroundLayer;
+    [SerializeField] GameObject foreGroundLayer;
     [SerializeField, Tooltip("Camera tracking speed")] float trackingSpeed = 4;
-    [SerializeField] float foregroundMaxXPos = 160;
-    [SerializeField] float foregroundMaxZPos = -250;
-    [SerializeField] float foregroundMinZPos = -100;
 
     const float movSpeed = 20;
-    const float maxXPos = 33;
+    [SerializeField] float maxXPos = 9;
+    const float foregroundMaxXPos = 2;
 
     private void Update()
     {
@@ -40,7 +42,7 @@ public class CameraManager : MonoBehaviour
         Vector3 furthestLeft = focusObjects[0].position;
         Vector3 furthestRight = focusObjects[1].position;
         Vector3 finalCameraPos = transform.localPosition;
-        //Vector3 finalForegroundPos = foreGroundLayer.localPosition;
+        Vector3 finalForegroundPos = foreGroundLayer.transform.localPosition;
 
         foreach (Transform t in focusObjects)
         {
@@ -56,17 +58,17 @@ public class CameraManager : MonoBehaviour
         }
 
         currentHDistance = Vector3.Distance(furthestLeft, furthestRight) + hMargin;
-        distanceRatio = Mathf.InverseLerp(minXDistance, maxXDistance, currentHDistance); //1 = furthest apart, 0 = closest
 
+        distanceRatio = Mathf.InverseLerp(minXDistance, maxXDistance, currentHDistance); //1 = furthest apart, 0 = closest
         focusCenter = focusCenter / focusObjects.Length;
         focusCenter.x = Mathf.Clamp(focusCenter.x, -maxXPos, maxXPos);
         xPosRatio = Mathf.InverseLerp(-maxXPos, maxXPos, focusCenter.x);
-        /*
-        finalForegroundPos.z = Mathf.Lerp(foregroundMinZPos, foregroundMaxZPos, distanceRatio);
+
         finalForegroundPos.x = Mathf.Lerp(foregroundMaxXPos, -foregroundMaxXPos, xPosRatio);
-        foreGroundLayer.localPosition = finalForegroundPos;
-        */
+        foreGroundLayer.transform.localPosition = finalForegroundPos;
+
         finalCameraPos.x = Mathf.Lerp(focusCenter.x, 0, distanceRatio);
+        finalCameraPos.y = Mathf.Lerp(minYpos, maxYpos, zPosCurve.Evaluate(distanceRatio));
         finalCameraPos.z = Mathf.Lerp(minZPos, maxZPos, zPosCurve.Evaluate(distanceRatio));
         transform.localPosition = Vector3.Lerp(transform.localPosition, finalCameraPos, Time.deltaTime * trackingSpeed);
     }

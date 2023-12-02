@@ -26,6 +26,11 @@ public class PlayerNamesPopUp : MonoBehaviour
     bool inputAllowed;
     bool isButtonShown;
 
+    private void Awake()
+    {
+        rtContinueButton.gameObject.SetActive(false);
+    }
+
     public void Show()
     {
         rtContinueButton.gameObject.SetActive(false);
@@ -49,14 +54,17 @@ public class PlayerNamesPopUp : MonoBehaviour
 
         goBtnExit.SetActive(false);
 
-
         Sequence _sequence = DOTween.Sequence()
             .Insert(0, imgBg.DOFade(0f, 1f))
-            .Insert(0, rtPopUp.DOAnchorPosY(-rtPopUp.sizeDelta.y * 1.2f, 1).SetEase(Ease.OutBack)).OnComplete(() =>
+            .Insert(0, rtContinueButton.DOAnchorPosX(0, .4f).OnComplete(()=> { rtContinueButton.gameObject.SetActive(false); }))
+            .Insert(0.4f, rtPopUp.DOAnchorPosY((-rtPopUp.sizeDelta.y * 1.2f) - Screen.height, 1).SetEase(Ease.OutBack)).OnComplete(() =>
             {
                 onHide?.Invoke();
                 goBtnExit.SetActive(true);
                 canvas.enabled = false;
+                isButtonShown = false;
+                if_player1.text = string.Empty;
+                if_player2.text = string.Empty;
             });
     }
 
@@ -93,7 +101,7 @@ public class PlayerNamesPopUp : MonoBehaviour
     {
         DOTween.Kill(GetInstanceID());
 
-        rtContinueButton.gameObject.SetActive(true);
+        //rtContinueButton.gameObject.SetActive(true);
         rtContinueButton.DOAnchorPosX(0, .2f).OnComplete(()=>rtContinueButton.gameObject.SetActive(false)).SetId(GetInstanceID());
     }
 
@@ -102,7 +110,7 @@ public class PlayerNamesPopUp : MonoBehaviour
         if(inputAllowed)
         {
             inputAllowed = false;
-            StartCoroutine(CoroutineUtils.DoAfterDelay(0.5f, () => UnityEngine.SceneManagement.SceneManager.LoadScene("Game")));
+            Fader.FadeIn(() => StartCoroutine(CoroutineUtils.DoAfterDelay(1f, () => UnityEngine.SceneManagement.SceneManager.LoadScene("Game"))));
         }
     }
 }
