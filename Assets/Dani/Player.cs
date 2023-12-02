@@ -185,12 +185,18 @@ public class Player : MonoBehaviour
         PiledItemsController items = GetComponentInChildren<PiledItemsController>();
         if(lost)
         {
+            // Debug.Log("Deactivating 2");
             items.piledItems[2].gameObject.SetActive(false);
-            items.piledItems[1].gameObject.SetActive(true);
+            items.piledItems[1].gameObject.SetActive(false);
         }
         else if (!won)
         {
-            items.piledItems[2].gameObject.SetActive(true);
+            // Debug.Log("Deactivating 1");
+            items.piledItems[2].gameObject.SetActive(false);
+        }
+        else
+        {
+            // Debug.Log("Deactivating 0");
         }
 
     }

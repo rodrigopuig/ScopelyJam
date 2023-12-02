@@ -111,8 +111,8 @@ namespace Rodrigo
                 player2 = Players.transform.GetChild(1).GetComponent<Player>();
                 player1.won = player1Advantage;
                 player2.won = player2Advantage;
-                player1.lost = !player2Advantage;
-                player2.lost = !player1Advantage;
+                player1.lost = player2Advantage && !player1Advantage;
+                player2.lost = player1Advantage && !player2Advantage;
                 player1.UpdateBoxes();
                 player2.UpdateBoxes();
 
