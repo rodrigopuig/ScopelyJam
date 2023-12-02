@@ -37,7 +37,7 @@ public class Fader : MonoBehaviour
     public static void FadeIn(Action _onComplete = null)
     {
         float _value = 1;
-        DOTween.To(() => _value, x => _value = x, 0, 0.8f).OnUpdate(() => { Instance.mat.SetFloat("_Offset", _value); }).OnComplete(() => { _onComplete?.Invoke(); });
+        DOTween.To(() => _value, x => _value = x, 0, 0.8f).OnUpdate(() => { Instance.mat.SetFloat("_Offset", _value); }).OnComplete(() => { _onComplete?.Invoke(); }).SetDelay(0.5f);
     }
 
     public static void FadeOut(Action _onComplete = null)
