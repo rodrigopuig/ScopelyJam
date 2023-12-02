@@ -112,10 +112,10 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collission with " + other.name);
+        // Debug.Log("Collission with " + other.name);
         if(other.tag == "weapon")
         {
-            Debug.Log("Applying force to " + gameObject.name);
+            // Debug.Log("Applying force to " + gameObject.name);
             StartCoroutine(ApplyForce(hitForce * -attackDirection, 0.2f));
         }
         if(other.tag == "Player")
@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                Debug.Log("collidingWithEnemy true");
                 collidingWithEnemy = true;
             }
         }
@@ -137,6 +138,7 @@ public class Player : MonoBehaviour
         {
             //if(attacking)
             {
+                Debug.Log("collidingWithEnemy true");
                 collidingWithEnemy = false;
             }
         }
