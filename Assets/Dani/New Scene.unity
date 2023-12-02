@@ -232,6 +232,14 @@ PrefabInstance:
       value: Fire2
       objectReference: {fileID: 0}
     - target: {fileID: 514695202111857937, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
+      propertyPath: parry
+      value: Parry2
+      objectReference: {fileID: 0}
+    - target: {fileID: 514695202111857937, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
+      propertyPath: initialIncline
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514695202111857937, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
       propertyPath: attackDirection
       value: -1
       objectReference: {fileID: 0}
@@ -241,7 +249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6283438748238589219, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.16
+      value: 7.32
       objectReference: {fileID: 0}
     - target: {fileID: 6283438748238589219, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
       propertyPath: m_LocalPosition.y
@@ -390,8 +398,9 @@ GameObject:
   - component: {fileID: 2001331564}
   - component: {fileID: 2001331563}
   - component: {fileID: 2001331562}
+  - component: {fileID: 2001331566}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cube and manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,6 +492,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2001331566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001331561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee289ceef6d3c64b99c19ce571b8805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7543234300309834423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,6 +512,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 514695202111857937, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
+      propertyPath: parry
+      value: Parry1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514695202111857937, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
+      propertyPath: initialIncline
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3854692961361036057, guid: f77dd4cbb93197843b324f77970e1586, type: 3}
       propertyPath: m_Name
       value: Player1
