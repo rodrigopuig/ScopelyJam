@@ -448,13 +448,14 @@ MonoBehaviour:
   fire: Fire1
   player: {fileID: 6283438748238589219}
   cargo: {fileID: 851509308892661362}
+  initialIncline: 1
   speed: 0.1
   recoverSpeed: 1
   cargoSpeed: 0.3
   sword: {fileID: 8994098449479110685}
   attackDirection: 1
   strikeForce: 1
-  hitForce: 3
+  hitForce: 5
 --- !u!54 &6445865849225166776
 Rigidbody:
   m_ObjectHideFlags: 0
