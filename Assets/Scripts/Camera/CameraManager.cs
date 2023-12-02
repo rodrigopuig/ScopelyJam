@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    [Header("General")]
     [SerializeField] Transform[] focusObjects;
-    [SerializeField] float maxHDistance = 180;
-    [SerializeField] float minHDistance = 130;
-    [SerializeField] float trackingSpeed = 1;
+
+    [Header("Zoom")]
+    [SerializeField] float maxZPos = 0;
+    [SerializeField] float minZPos = 40;
     [SerializeField] float hMargin = 40;
     [SerializeField] AnimationCurve zPosCurve;
+    [SerializeField] float maxHDistance = 180;
+    [SerializeField] float minHDistance = 130;
 
     [Header("Misc"), Space(20)]
     [SerializeField] RectTransform foreGroundLayer;
+    [SerializeField] float trackingSpeed = 4;
     [SerializeField] float foregroundMaxXPos = 160;
     [SerializeField] float foregroundMaxZPos = -250;
     [SerializeField] float foregroundMinZPos = -100;
 
     const float movSpeed = 20;
-    const float maxFocusDistance = 0;
-    const float minFocusDistance = 40;
     const float maxXPos = 33;
 
     private void Update()
@@ -72,7 +75,7 @@ public class CameraManager : MonoBehaviour
         foreGroundLayer.localPosition = finalForegroundPos;
 
         finalCameraPos.x = Mathf.Lerp(focusCenter.x, 0, distanceRatio);
-        finalCameraPos.z = Mathf.Lerp(minFocusDistance, maxFocusDistance, zPosCurve.Evaluate(distanceRatio));
+        finalCameraPos.z = Mathf.Lerp(minZPos, maxZPos, zPosCurve.Evaluate(distanceRatio));
         transform.localPosition = Vector3.Lerp(transform.localPosition, finalCameraPos, Time.deltaTime * trackingSpeed);
     }
 }
