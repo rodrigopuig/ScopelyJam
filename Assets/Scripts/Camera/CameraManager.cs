@@ -6,6 +6,8 @@ public class CameraManager : MonoBehaviour
 {
     [Header("General")]
     [SerializeField] Transform[] focusObjects;
+    [SerializeField] CharacterAnimator p1Anim;
+    [SerializeField] CharacterAnimator p2Anim;
 
     [Header("Zoom")]
     [SerializeField, Tooltip("Cam z pos when players are furthest apart")] float maxZPos = 0;
@@ -37,6 +39,8 @@ public class CameraManager : MonoBehaviour
         float hInputAlt = Input.GetAxis("Horizontal2");
         focusObjects[0].position += Vector3.right * hInput * movSpeed * Time.deltaTime;
         focusObjects[1].position += Vector3.right * hInputAlt * movSpeed * Time.deltaTime;
+        p1Anim.UpdateAnimParams(Mathf.Abs(hInput));
+        p2Anim.UpdateAnimParams(Mathf.Abs(hInputAlt));
     }
 
     void KeepObjectsInFocus()
