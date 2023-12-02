@@ -13,8 +13,8 @@ namespace Rodrigo
         /// <summary>
         /// parameter - round index
         /// </summary>
-        public Action<int> onNextRound;
-        public Action onGameFinished;
+        public static Action<int> onNextRound;
+        public static Action onGameFinished;
 
         public TextMeshProUGUI txtRound;
 
@@ -62,12 +62,22 @@ namespace Rodrigo
         void PlayTxtRoundAnimation()
         {
             RectTransform _rtText = txtRound.GetComponent<RectTransform>();
-            float _txtWidth = _rtText.sizeDelta.x;
 
             _rtText.anchoredPosition = new Vector2(Screen.width, _rtText.anchoredPosition.y);
             Sequence _sequence = DOTween.Sequence()
                 .Append(_rtText.DOAnchorPosX(0, 0.5f).SetEase(Ease.OutBack))
                 .Append(_rtText.DOAnchorPosX(-Screen.width, 0.5f).SetDelay(1f));
+        }
+
+        public static void FinishGame()
+        {
+
+        }
+
+        private void OnDestroy()
+        {
+            onNextRound = null;
+            onGameFinished = null;
 
         }
     }
