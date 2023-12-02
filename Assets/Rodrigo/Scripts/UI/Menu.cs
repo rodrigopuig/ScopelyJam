@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour
         popUp.onHide += () => Show();
 
         rtPlayButton.anchoredPosition = new Vector2(305f, rtPlayButton.anchoredPosition.y);
-        rtCreditsButton.anchoredPosition = new Vector2(-224, rtCreditsButton.anchoredPosition.y);
+        rtCreditsButton.anchoredPosition = new Vector2(-300, rtCreditsButton.anchoredPosition.y);
         rtExitButton.localScale = Vector3.zero;
 
         inputAllowed = true;
@@ -59,7 +59,7 @@ public class Menu : MonoBehaviour
         //canvas.enabled = true;
         Sequence _sequence = DOTween.Sequence()
             .Insert(0, rtPlayButton.DOAnchorPosX(-305, 0.5f).SetEase(Ease.OutBack))
-            .Insert(0, rtCreditsButton.DOAnchorPosX(224f, 0.5f).SetEase(Ease.OutBack))
+            .Insert(0, rtCreditsButton.DOAnchorPosX(305, 0.5f).SetEase(Ease.OutBack))
             .Insert(0.5f, rtExitButton.DOScale(1, 0.5f).SetEase(Ease.OutBack)).OnComplete(() => { _onComplete?.Invoke(); inputAllowed = true; });
     }
 
@@ -67,7 +67,7 @@ public class Menu : MonoBehaviour
     {
         Sequence _sequence = DOTween.Sequence()
            .Insert(0.5f, rtPlayButton.DOAnchorPosX(305, 0.5f).SetEase(Ease.OutBack))
-           .Insert(0.5f, rtCreditsButton.DOAnchorPosX(-224f, 0.5f).SetEase(Ease.OutBack))
+           .Insert(0.5f, rtCreditsButton.DOAnchorPosX(-305, 0.5f).SetEase(Ease.OutBack))
            .Insert(0, rtExitButton.DOScale(0, 0.5f).SetEase(Ease.OutBack)).OnComplete(() => {
               // canvas.enabled = false;
                _onComplete?.Invoke();
