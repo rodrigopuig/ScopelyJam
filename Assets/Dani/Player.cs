@@ -205,9 +205,9 @@ public class Player : MonoBehaviour
 
         if (cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
-            Debug.Log("GAME OVER");
-            Time.timeScale = 0.00001f;
-            GameController.instance.NextRound(this);
+            //Debug.Log("GAME OVER");
+            //Time.timeScale = 0.00001f;
+            //GameController.instance.NextRound(this);
         }
     }
 
@@ -328,7 +328,7 @@ public class Player : MonoBehaviour
                 else if (otherPlayer.attacking && !parrying)
                 {
                     // Debug.Log("Applying force to " + gameObject.name);
-                    FreezeFrameManager.BulletTime();
+                    FreezeFrameManager.FreezeFrame();
                     ParticleManager.Instance.SpawnHitParticles(transform.position);
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
                 }

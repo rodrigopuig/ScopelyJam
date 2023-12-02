@@ -13,6 +13,7 @@ public class FreezeFrameManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         freezeWait = new WaitForSecondsRealtime(freezeTimeDuration);
     }
 
