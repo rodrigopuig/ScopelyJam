@@ -11,12 +11,7 @@ public class Tutorial : MonoBehaviour
 
     public Canvas canvas;
     public PlayerUIInput[] inputs;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject[] objectsToDisableOnTutorialClose;
 
     // Update is called once per frame
     void Update()
@@ -33,6 +28,10 @@ public class Tutorial : MonoBehaviour
     public void Continue()
     {
         canvas.enabled = false;
+
+        foreach (var go in objectsToDisableOnTutorialClose)
+            go.SetActive(false);
+
         onCloseTutorial?.Invoke();
     }
 
