@@ -328,6 +328,11 @@ public class Player : MonoBehaviour
         this.externalForce = 0;
     }
 
+    public void PlayWalkSound()
+    {
+        AudioManager.Instance.PlayWalkSound();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "weapon")
@@ -338,6 +343,7 @@ public class Player : MonoBehaviour
                 {
                     otherPlayer.ApplyParry();
                     FreezeFrameManager.FreezeFrame();
+                    AudioManager.Instance.PlayPushSound();
                     StartCoroutine(ApplyExternalForce(parryForce * -attackDirection, 0.2f));
 
                     Blink();
