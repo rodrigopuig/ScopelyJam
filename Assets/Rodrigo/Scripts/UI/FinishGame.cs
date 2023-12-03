@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+
 public class FinishGame : MonoBehaviour
 {
 
     public GameObject player1_win, player1_lose, player2_win, player2_lose;
+    public TextMeshPro txtName1, txtName2;
 
     bool inputAllowed;
 
@@ -27,6 +30,9 @@ public class FinishGame : MonoBehaviour
             player1_lose.SetActive(true);
             player2_lose.SetActive(true);
         }
+
+        txtName1.text = PlayerPrefs.GetString(DataUtils.playerName1);
+        txtName2.text = PlayerPrefs.GetString(DataUtils.playerName2);
     }
 
     public void Replay()
