@@ -55,7 +55,7 @@ public class RoundNotificator : MonoBehaviour
         bool _stepComplted = false;
 
         float _value = 0;
-        DOTween.To(() => _value, x => _value = x, 1, 1).SetUpdate(true)
+        DOTween.To(() => _value, x => _value = x, 1, 1).SetUpdate(true).SetId(GetInstanceID())
             .OnUpdate(()=>
             {
                 offset.y = Mathf.Lerp(origin.y, end.y, _value);
@@ -66,7 +66,7 @@ public class RoundNotificator : MonoBehaviour
         yield return new WaitForSecondsRealtime(2);
 
         _stepComplted = false;
-        DOTween.To(() => _value, x => _value = x, 0, 1).SetUpdate(true)
+        DOTween.To(() => _value, x => _value = x, 0, 1).SetUpdate(true).SetId(GetInstanceID())
              .OnUpdate(() =>
              {
                  offset.y = Mathf.Lerp(origin.y, end.y, _value);
@@ -76,5 +76,11 @@ public class RoundNotificator : MonoBehaviour
         yield return new WaitUntil(() => _stepComplted);
 
         _onComplete?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+        DOTween.Kill(GetInstanceID());
     }
 }

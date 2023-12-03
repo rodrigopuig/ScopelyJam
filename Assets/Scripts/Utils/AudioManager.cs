@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        musicSC.loop = true;
         yield return MusicSCFade(musicSC.volume);
     }
 

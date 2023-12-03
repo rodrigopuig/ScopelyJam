@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -219,9 +218,6 @@ public class Player : MonoBehaviour
 
         if (cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
-            // Debug.Log("GAME OVER");
-            // Time.timeScale = 0.00001f;
-            // GameController.instance.NextRound(this);
             StartCoroutine(GameOver());
         }
     }
@@ -236,6 +232,14 @@ public class Player : MonoBehaviour
             item.gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
         }
         items.enabled = false;
+
+
+        Color color = Color.red;
+        DOTween.To(() => Color.white, x => color = x, Color.red, 0.3f).OnUpdate(() =>
+        {
+            foreach (var mat in mats)
+                mat.SetColor("_Color", color);
+        }).SetLoops(-1, LoopType.Yoyo);
 
         yield return new WaitForSeconds(1.5f);
 

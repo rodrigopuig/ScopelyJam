@@ -20,14 +20,12 @@ public class CameraManager : MonoBehaviour
     [SerializeField] float minYpos = -0.77f;
 
     [Header("Misc"), Space(20)]
-    [SerializeField] GameObject foreGroundLayer;
     [SerializeField, Tooltip("Camera tracking speed")] float trackingSpeed = 4;
 
     public GameObject screenEffect;
 
     const float movSpeed = 20;
     [SerializeField] float maxXPos = 9;
-    const float foregroundMaxXPos = 2;
 
     private IEnumerator Start()
     {
@@ -50,7 +48,6 @@ public class CameraManager : MonoBehaviour
         Vector3 furthestLeft = focusObjects[0].position;
         Vector3 furthestRight = focusObjects[1].position;
         Vector3 finalCameraPos = transform.localPosition;
-        Vector3 finalForegroundPos = foreGroundLayer.transform.localPosition;
 
         foreach (Transform t in focusObjects)
         {
@@ -70,9 +67,6 @@ public class CameraManager : MonoBehaviour
         focusCenter = focusCenter / focusObjects.Length;
         focusCenter.x = Mathf.Clamp(focusCenter.x, -maxXPos, maxXPos);
         xPosRatio = Mathf.InverseLerp(-maxXPos, maxXPos, focusCenter.x);
-
-        finalForegroundPos.x = Mathf.Lerp(foregroundMaxXPos, -foregroundMaxXPos, xPosRatio);
-        foreGroundLayer.transform.localPosition = finalForegroundPos;
 
         finalCameraPos.x = Mathf.Lerp(focusCenter.x, 0, distanceRatio);
         finalCameraPos.y = Mathf.Lerp(minYpos, maxYpos, zPosCurve.Evaluate(distanceRatio));
