@@ -274,7 +274,7 @@ public class Player : MonoBehaviour
 
         attacking = true;
         parrying = false;
-        
+
         yield return new WaitUntil(() => waitAttack);
         AudioManager.Instance.PlayPushSound();
         waitAttack = false;

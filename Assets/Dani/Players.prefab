@@ -130,6 +130,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7221068864262012103}
     m_Modifications:
+    - target: {fileID: 2536189275230657118, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536189275230657118, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.4509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536189275230657118, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.27450982
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536189275230657118, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.21960784
+      objectReference: {fileID: 0}
     - target: {fileID: 3431906128563729816, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
       propertyPath: m_Name
       value: CameraPivot
@@ -139,12 +155,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
+      propertyPath: maxXPos
+      value: 6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
       propertyPath: maxZPos
-      value: -4
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
       propertyPath: minZPos
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4879413969820990052, guid: 2c5e8c4418b4c684898e8adeac0f2a4c, type: 3}
       propertyPath: maxXDistance
