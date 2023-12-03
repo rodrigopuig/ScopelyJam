@@ -5,7 +5,6 @@ using UnityEngine;
 
 using TMPro;
 using DG.Tweening;
-using Palmmedia.ReportGenerator.Core.Parser.Filtering;
 using UnityEngine.SceneManagement;
 
 namespace Rodrigo
