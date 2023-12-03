@@ -29,8 +29,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] float maxXPos = 9;
     const float foregroundMaxXPos = 2;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => FreezeFrameManager.Instance != null);
         FreezeFrameManager.Instance.screenEffect = screenEffect;
     }
 
