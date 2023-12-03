@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
         // If there is an instance, and it's not me, delete myself.
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
