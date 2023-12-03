@@ -28,7 +28,7 @@ public class FinishGame : MonoBehaviour
             player1_win.SetActive(false);
             player2_win.SetActive(true);
             player1_lose.SetActive(true);
-            player2_lose.SetActive(true);
+            player2_lose.SetActive(false);
         }
 
         txtName1.text = PlayerPrefs.GetString(DataUtils.playerName1);
