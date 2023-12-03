@@ -45,12 +45,12 @@ public class Fader : MonoBehaviour
         float _value = 0;
         DOTween.To(() => _value, x => _value = x, 1, 0.8f).OnUpdate(() => { Instance.mat.SetFloat("_Offset", _value); }).SetUpdate(true).OnComplete(() => { _onComplete?.Invoke(); }); ;
     }
-
+    /*
 #if UNITY_EDITOR
     private void OnGUI()
     {
         if(GUI.Button(new Rect(0,0,100,100), "FadeIn")) { FadeIn(); }
         if (GUI.Button(new Rect(100, 0, 100, 100),"FadeOut")) { FadeOut(); }
     }
-#endif
+#endif*/
 }
