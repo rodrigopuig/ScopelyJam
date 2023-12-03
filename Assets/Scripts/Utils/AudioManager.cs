@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip fightSound;
     [SerializeField] AudioClip clashSound;
     [SerializeField] AudioClip walkSound;
+    [SerializeField] AudioSource musicSC;
     AudioSource audioSC;
+
+    const float musicFadeTime = 4f;
 
     public static AudioManager Instance { get; private set; }
 
@@ -25,7 +29,25 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
         }
+        DontDestroyOnLoad(transform.gameObject);
         audioSC = GetComponent<AudioSource>();
+    }
+
+    private IEnumerator Start()
+    {
+        yield return MusicSCFade(musicSC.volume);
+    }
+
+    private IEnumerator MusicSCFade(float targetVolume)
+    {
+        float elapsed = 0;
+        musicSC.volume = 0;
+        while (elapsed < musicFadeTime)
+        {
+            elapsed += Time.deltaTime;
+            musicSC.volume = Mathf.Lerp(0, targetVolume, elapsed / musicFadeTime);
+            yield return null;
+        }
     }
 
     public void PlayButtonSound()
