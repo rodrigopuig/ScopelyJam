@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
     private bool waitAttack;
     private bool waitParry;
     private bool updatedBoxes;
-    private bool gameOver;
 
     [Header("Particles")]
     [SerializeField] GameObject sweatParticles;
@@ -82,7 +81,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        gameOver = false;
         sword.SetActive(false);
 
         if(attackDirection == -1)
@@ -109,8 +107,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (gameOver) return;
-
         // ATTACK
         if(Input.GetAxis(fire)>0)
         {
@@ -133,8 +129,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (gameOver) return;
-
         // MOVEMENT
         float input = Input.GetAxis(axis);
         float localInternalForce = 0;
@@ -152,14 +146,14 @@ public class Player : MonoBehaviour
             if(attackDirection > 0 && input > 0)
             {
                 input = 0;
-                // localExternalForce = 0;
-                // localInternalForce = 0;
+                localExternalForce = 0;
+                localInternalForce = 0;
             }
             if(attackDirection < 0 && input < 0)
             {
                 input = 0;
-                // localExternalForce = 0;
-                // localInternalForce = 0;
+                localExternalForce = 0;
+                localInternalForce = 0;
             }
         }
 
@@ -168,13 +162,15 @@ public class Player : MonoBehaviour
             if (attackDirection < 0 && input > 0)
             {
                 input = 0;
+                localExternalForce = 0;
+                localInternalForce = 0;
             }
             if (attackDirection > 0 && input < 0)
             {
                 input = 0;
+                localExternalForce = 0;
+                localInternalForce = 0;
             }
-            localExternalForce = 0;
-            localInternalForce = 0;
         }
 
         animator.SetFloat("speed", Mathf.Abs(input + localExternalForce + localInternalForce));
@@ -219,29 +215,12 @@ public class Player : MonoBehaviour
 
         if (cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         {
-            // Debug.Log("GAME OVER");
-            // Time.timeScale = 0.00001f;
-            // GameController.instance.NextRound(this);
-            StartCoroutine(GameOver());
+            /*
+            Debug.Log("GAME OVER");
+            Time.timeScale = 0.00001f;
+            GameController.instance.NextRound(this);
+            */
         }
-    }
-
-    private IEnumerator GameOver()
-    {
-        gameOver = true;
-
-        PiledItemsController items = GetComponentInChildren<PiledItemsController>();
-        foreach (var item in items.piledItems)
-        {
-            item.gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
-        }
-        items.enabled = false;
-
-        yield return new WaitForSeconds(1.5f);
-
-        Debug.Log("GAME OVER");
-        Time.timeScale = 0.00001f;
-        GameController.instance.NextRound(this);
     }
 
     public void UpdateBoxes()
