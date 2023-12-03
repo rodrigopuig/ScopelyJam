@@ -3388,6 +3388,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3677967179873707638, guid: 70465383bc4114347af9edb7e38e5ad4, type: 3}
+      propertyPath: screenEffect
+      value: 
+      objectReference: {fileID: 2115087173}
     - target: {fileID: 4358785226633357475, guid: 70465383bc4114347af9edb7e38e5ad4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3929,7 +3933,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 7.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1026527935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

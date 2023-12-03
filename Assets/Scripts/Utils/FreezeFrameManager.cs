@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class FreezeFrameManager : MonoBehaviour
 {
     public static FreezeFrameManager Instance;
     [SerializeField] float freezeTimeDuration = 0.15f;
     [SerializeField] float bulletTimeSpeed = 0.15f;
+    [SerializeField] GameObject screenEffect;
     static bool frameFrozen;
     static bool bulletTime;
     static WaitForSecondsRealtime freezeWait;
@@ -39,7 +41,10 @@ public class FreezeFrameManager : MonoBehaviour
 
         var original = Time.timeScale;
         Time.timeScale = timescale;
+        Instance.screenEffect.SetActive(true);
+        Instance.screenEffect.transform.DOScale(1, Instance.freezeTimeDuration).From(1.2f).SetUpdate(true);
         yield return freezeWait;
+        Instance.screenEffect.SetActive(false);
         Time.timeScale = original;
 
         if (timescale > 0) bulletTime = false;
