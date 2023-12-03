@@ -16,6 +16,8 @@ public class FinishGame : MonoBehaviour
     {
         inputAllowed = true;
 
+        Time.timeScale = 1;
+
         if(PlayerPrefs.GetInt(DataUtils.playerScore1) == 1)
         {
             player1_win.SetActive(true);

@@ -37,13 +37,13 @@ public class Fader : MonoBehaviour
     public static void FadeIn(Action _onComplete = null)
     {
         float _value = 1;
-        DOTween.To(() => _value, x => _value = x, 0, 0.8f).OnUpdate(() => { Instance.mat.SetFloat("_Offset", _value); }).OnComplete(() => { _onComplete?.Invoke(); }).SetDelay(0.5f);
+        DOTween.To(() => _value, x => _value = x, 0, 0.8f).OnUpdate(() => { Instance.mat.SetFloat("_Offset", _value); }).SetUpdate(true).OnComplete(() => { _onComplete?.Invoke(); }).SetDelay(0.5f);
     }
 
     public static void FadeOut(Action _onComplete = null)
     {
         float _value = 0;
-        DOTween.To(() => _value, x => _value = x, 1, 0.8f).OnUpdate(() => { Instance.mat.SetFloat("_Offset", _value); }).OnComplete(() => { _onComplete?.Invoke(); }); ;
+        DOTween.To(() => _value, x => _value = x, 1, 0.8f).OnUpdate(() => { Instance.mat.SetFloat("_Offset", _value); }).SetUpdate(true).OnComplete(() => { _onComplete?.Invoke(); }); ;
     }
 
 #if UNITY_EDITOR
