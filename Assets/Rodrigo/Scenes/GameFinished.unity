@@ -1028,6 +1028,10 @@ PrefabInstance:
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2046930275148593243, guid: e7d60a45568dc46cea30bfdc62c523a1, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9004750244505127967, guid: e7d60a45568dc46cea30bfdc62c523a1, type: 3}
       propertyPath: m_Name
       value: PS Fish
@@ -1189,6 +1193,14 @@ PrefabInstance:
     - target: {fileID: 1091578423941158627, guid: 02109061bdb1155479423c2b56106c09, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929438374613711423, guid: 02109061bdb1155479423c2b56106c09, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387397557740110236, guid: 02109061bdb1155479423c2b56106c09, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1639,7 +1651,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7185ba498c6ad3147a3a2b496efad23d, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1833,7 +1845,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d2ec299ea5115704b8f66cfa3fad73f1, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1943,7 +1955,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b69093331419555478e1ac3953056234, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1962,6 +1974,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3414377711642762544, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
       propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414377711642762544, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
+      propertyPath: useUnscaledTime
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4461540631738721882, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
@@ -2314,6 +2330,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3414377711642762544, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
       propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414377711642762544, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
+      propertyPath: useUnscaledTime
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4461540631738721882, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
@@ -3719,6 +3739,10 @@ PrefabInstance:
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2046930275148593243, guid: e7d60a45568dc46cea30bfdc62c523a1, type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9004750244505127967, guid: e7d60a45568dc46cea30bfdc62c523a1, type: 3}
       propertyPath: m_Name
       value: PS Fish
@@ -4863,7 +4887,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: da71e8a04b269a54589bdcb51092b303, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -5427,7 +5451,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 983e6c2581eaffe47a5c912d7515aead, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

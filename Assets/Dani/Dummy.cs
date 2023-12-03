@@ -18,7 +18,7 @@ public class Dummy : MonoBehaviour
                 {
                     if(_pair.action == AnimationPair.Action.PressDown && Input.GetKeyDown(_pair.keyCode))
                     GetComponent<Animator>().Play(_pair.animationName, 0);
-                    else if(_pair.action == AnimationPair.Action.PressHold && Input.GetKeyDown(_pair.keyCode))
+                    else if(_pair.action == AnimationPair.Action.PressHold && Input.GetKey(_pair.keyCode))
                         GetComponent<Animator>().Play(_pair.animationName, 0);
                 } 
         }
