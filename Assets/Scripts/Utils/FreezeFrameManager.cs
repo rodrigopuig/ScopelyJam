@@ -8,20 +8,19 @@ public class FreezeFrameManager : MonoBehaviour
     public static FreezeFrameManager Instance;
     [SerializeField] float freezeTimeDuration = 0.15f;
     [SerializeField] float bulletTimeSpeed = 0.15f;
-    [SerializeField] GameObject screenEffect;
+    [SerializeField] public GameObject screenEffect;
     static bool frameFrozen;
     static bool bulletTime;
     static WaitForSecondsRealtime freezeWait;
 
     private void Awake()
     {
-        Instance = this;
-        freezeWait = new WaitForSecondsRealtime(freezeTimeDuration);
+            Instance = this;
     }
 
     public static void FreezeFrame()
     {
-        if (!frameFrozen)
+        if (!frameFrozen && Instance!=null)
         {
             Instance.StartCoroutine(DoFreezeFrame(0));
         }
@@ -49,6 +48,11 @@ public class FreezeFrameManager : MonoBehaviour
 
         if (timescale > 0) bulletTime = false;
         else frameFrozen = false;
+    }
+
+    private void OnDestroy()
+    {
+        Instance.StopAllCoroutines();
     }
 
 #if UNITY_EDITOR
