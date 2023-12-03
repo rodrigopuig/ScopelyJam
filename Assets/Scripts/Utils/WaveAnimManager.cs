@@ -13,6 +13,7 @@ public class WaveAnimManager : MonoBehaviour
     const float delayMax = 0.3f;
 
 
+
     private IEnumerator WaveAnimations()
     {
         float randDelayTime;
@@ -33,10 +34,15 @@ public class WaveAnimManager : MonoBehaviour
         yield return WaveAnimations();
     }
 
+    private void OnDestroy()
+    {
+        DOTween.Kill(GetInstanceID());
+    }
+
     private void FadeWave(SpriteRenderer wave)
     {
         wave.DOKill();
-        wave.DOFade(1, fadeInTime).OnStart(()=> { wave.transform.DOScaleY(1, fadeInTime); }).OnComplete(()=> { wave.DOFade(0, fadeOutTime*2); wave.transform.DOScaleY(0.5f, fadeInTime); });
+        wave.DOFade(1, fadeInTime).OnStart(() => { wave.transform.DOScaleY(1, fadeInTime); }).OnComplete(() => { wave.DOFade(0, fadeOutTime * 2); wave.transform.DOScaleY(0.5f, fadeInTime); }).SetId(GetInstanceID()) ;
     }
 
 
