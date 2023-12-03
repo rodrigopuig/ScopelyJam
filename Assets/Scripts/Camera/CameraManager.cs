@@ -23,9 +23,16 @@ public class CameraManager : MonoBehaviour
     [SerializeField] GameObject foreGroundLayer;
     [SerializeField, Tooltip("Camera tracking speed")] float trackingSpeed = 4;
 
+    public GameObject screenEffect;
+
     const float movSpeed = 20;
     [SerializeField] float maxXPos = 9;
     const float foregroundMaxXPos = 2;
+
+    private void Start()
+    {
+        FreezeFrameManager.Instance.screenEffect = screenEffect;
+    }
 
     private void Update()
     {
