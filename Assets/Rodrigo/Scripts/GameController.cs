@@ -27,8 +27,7 @@ namespace Rodrigo
         public bool player1Advantage;
         public bool player2Advantage;
 
-        public TextMeshProUGUI txtRound;
-
+        public RoundNotificator roundNotificator;
 
         int currentRound;
 
@@ -61,7 +60,7 @@ namespace Rodrigo
         void StartGame()
         {
             Time.timeScale = 1;
-            PlayTxtRoundAnimation();
+            roundNotificator.PlayAnimation(currentRound+1);
         }
 
         public void NextRound(Player loser)
@@ -120,26 +119,15 @@ namespace Rodrigo
                 Fader.FadeOut(() =>
                 {
                     // Debug.Log("FadeOut2");
-                    Time.timeScale = 1;
+                   
                     // Debug.Log("Next Round");
                     currentRound++;
-                    txtRound.text = $"ROUND {currentRound + 1}";
-                    StartCoroutine(CoroutineUtils.DoAfterFrames(1, PlayTxtRoundAnimation));
+                    roundNotificator.PlayAnimation(currentRound+1, () => Time.timeScale = 1);
 
                     onNextRound?.Invoke(currentRound);
                 });
             });
             
-        }
-
-        void PlayTxtRoundAnimation()
-        {
-            RectTransform _rtText = txtRound.GetComponent<RectTransform>();
-
-            _rtText.anchoredPosition = new Vector2(Screen.width, _rtText.anchoredPosition.y);
-            Sequence _sequence = DOTween.Sequence().SetUpdate(true)
-                .Append(_rtText.DOAnchorPosX(0, 0.5f).SetEase(Ease.OutBack))
-                .Append(_rtText.DOAnchorPosX(-Screen.width, 0.5f).SetDelay(1f));
         }
 
         public static void FinishGame()
