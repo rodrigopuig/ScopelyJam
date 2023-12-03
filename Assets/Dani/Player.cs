@@ -222,7 +222,7 @@ public class Player : MonoBehaviour
             // Debug.Log("GAME OVER");
             // Time.timeScale = 0.00001f;
             // GameController.instance.NextRound(this);
-            //StartCoroutine(GameOver());
+            StartCoroutine(GameOver());
         }
     }
 
