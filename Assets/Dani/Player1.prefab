@@ -76,7 +76,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7355764775196696858}
   - component: {fileID: 8282080325907390926}
-  m_Layer: 0
+  - component: {fileID: 5741777056686826129}
+  - component: {fileID: 7002518925548722008}
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +152,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!54 &5741777056686826129
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037715877246664454}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7002518925548722008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037715877246664454}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.68, y: 6.85, z: 92.243065}
+  m_Center: {x: 0, y: 0, z: 0.6857529}
 --- !u!1 &1876058998480819561
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,11 +993,11 @@ MonoBehaviour:
   extraWeightMultiplier: 2
   lessWeightMultiplier: 0.3
   attackImage: {fileID: 5177118602758273805}
-  attackColor: {r: 1, g: 0, b: 0, a: 1}
-  attackCDColor: {r: 1, g: 0, b: 0, a: 0.5529412}
+  attackColor: {r: 0.7169812, g: 0.1318975, b: 0.1318975, a: 1}
+  attackCDColor: {r: 0.7176471, g: 0.13333334, b: 0.13333334, a: 1}
   parryImage: {fileID: 6836016679913680718}
-  parryColor: {r: 1, g: 1, b: 0, a: 1}
-  parryCDColor: {r: 1, g: 1, b: 0, a: 0.50980395}
+  parryColor: {r: 0.6320754, g: 0.6320754, b: 0.10435206, a: 1}
+  parryCDColor: {r: 0.6313726, g: 0.6313726, b: 0.105882354, a: 1}
   parrying: 0
   sweatParticles: {fileID: 5583191919301014380}
   fishParticles: {fileID: 4682506964988547636}
@@ -1174,7 +1224,9 @@ GameObject:
   m_Component:
   - component: {fileID: 729682797042831517}
   - component: {fileID: 5986018488084085412}
-  m_Layer: 0
+  - component: {fileID: 3349579044447997454}
+  - component: {fileID: 1338365681046566137}
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1248,6 +1300,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!54 &3349579044447997454
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300971449415454496}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1338365681046566137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300971449415454496}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.68, y: 6.85, z: 92.243065}
+  m_Center: {x: 0, y: 0, z: 0.6857529}
 --- !u!1 &6871982276235806153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,7 +1434,9 @@ GameObject:
   m_Component:
   - component: {fileID: 783337995200367582}
   - component: {fileID: 3265195877045267659}
-  m_Layer: 0
+  - component: {fileID: 4083407437762141771}
+  - component: {fileID: 987706901773654530}
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,6 +1510,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!54 &4083407437762141771
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7033134528133725481}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &987706901773654530
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7033134528133725481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.68, y: 6.85, z: 92.243065}
+  m_Center: {x: 0, y: 0, z: 0.6857529}
 --- !u!1 &7066314689823759528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,6 +2082,14 @@ PrefabInstance:
     - target: {fileID: 3414377711642762544, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
       propertyPath: looping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414377711642762544, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414377711642762544, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4461540631738721882, guid: 8405180696cb840d3afb7df17fca1de9, type: 3}
       propertyPath: m_Name
