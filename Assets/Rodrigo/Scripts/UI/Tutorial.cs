@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
-
+using TMPro;
 
 public class Tutorial : MonoBehaviour
 {
@@ -12,6 +12,14 @@ public class Tutorial : MonoBehaviour
     public Canvas canvas;
     public PlayerUIInput[] inputs;
     public GameObject[] objectsToDisableOnTutorialClose;
+    public TextMeshProUGUI txtPressSpace;
+
+    Color color;
+
+    private void Awake()
+    {
+        color = Color.white;
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,6 +30,14 @@ public class Tutorial : MonoBehaviour
                 input.imgKey.color = Color.green;
             else
                 input.imgKey.color = Color.white;
+        }
+
+        color.a = Mathf.Repeat(Time.unscaledTime, 1);
+        txtPressSpace.color = color;
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Continue();
+            enabled = false;
         }
     }
 
