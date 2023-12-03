@@ -215,9 +215,10 @@ public class Player : MonoBehaviour
 
         if (cargo.eulerAngles.z > 270 || cargo.eulerAngles.z < 90)
         { 
+            /*
             Debug.Log("GAME OVER");
             Time.timeScale = 0.00001f;
-            GameController.instance.NextRound(this);
+            GameController.instance.NextRound(this);*/
         }
     }
 
@@ -260,6 +261,7 @@ public class Player : MonoBehaviour
     public void ApplyParry()
     {
         blockParticles.Play();
+        AudioManager.Instance.PlayClashSound();
         //restore attack
         attacking = false;
         attackHit = false;
@@ -273,6 +275,7 @@ public class Player : MonoBehaviour
 
         attacking = true;
         yield return new WaitUntil(() => waitAttack);
+        AudioManager.Instance.PlayPushSound();
         waitAttack = false;
         sword.SetActive(true);
         attackImage.fillAmount = 0;
@@ -339,6 +342,7 @@ public class Player : MonoBehaviour
                 {
                     FreezeFrameManager.FreezeFrame();
                     fishParticles.Play();
+                    AudioManager.Instance.PlayHitSound();
                     StartCoroutine(ApplyExternalForce(hitForce * -attackDirection, 0.2f));
 
                     Blink();

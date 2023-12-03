@@ -57,8 +57,7 @@ public class CameraManager : MonoBehaviour
             }
         }
 
-        currentHDistance = Vector3.Distance(furthestLeft, furthestRight) + hMargin;
-
+        currentHDistance = Vector3.Distance(furthestLeft, furthestRight) + hMargin; 
         distanceRatio = Mathf.InverseLerp(minXDistance, maxXDistance, currentHDistance); //1 = furthest apart, 0 = closest
         focusCenter = focusCenter / focusObjects.Length;
         focusCenter.x = Mathf.Clamp(focusCenter.x, -maxXPos, maxXPos);
