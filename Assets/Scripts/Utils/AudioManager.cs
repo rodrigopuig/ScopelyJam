@@ -73,7 +73,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayWalkSound()
     {
-        PlaySound(walkSound, 1, 0.8f, 1.2f);
+        PlaySound(walkSound, 0.6f, 0.8f, 1.2f);
     }
 
     private void PlaySound(AudioClip original, float volume = 1, float minPitch = 1, float maxPitch = 1)
