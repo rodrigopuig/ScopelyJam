@@ -30,6 +30,7 @@ namespace Rodrigo
         public RoundNotificator roundNotificator;
 
         int currentRound;
+        bool bothPlayersCanLoseAvoider;
 
         private void Awake()
         {
@@ -60,23 +61,31 @@ namespace Rodrigo
         void StartGame()
         {
             Time.timeScale = 1;
-            roundNotificator.PlayAnimation(currentRound+1);
+            roundNotificator.PlayAnimation(currentRound + 1);
         }
 
         public void NextRound(Player loser)
         {
+            if (bothPlayersCanLoseAvoider)
+                return;
+            else
+            {
+                bothPlayersCanLoseAvoider = true;
+                StartCoroutine(CoroutineUtils.DoAfterDelayRealtime(0.5f, () => bothPlayersCanLoseAvoider = false));
+            }
+
             Debug.Log("Next Round");
-            Fader.FadeIn(()=>
+            Fader.FadeIn(() =>
             {
                 // Debug.Log("FadeIn");
-                if(loser == player2 && player1Advantage)
+                if (loser == player2 && player1Advantage)
                 {
                     Debug.Log("Player 1 WINS");
                     PlayerPrefs.SetInt(DataUtils.playerScore1, 1);
                     PlayerPrefs.SetInt(DataUtils.playerScore2, 0);
                     SceneManager.LoadScene("GameFinished");
                 }
-                else if(loser == player1 && player2Advantage)
+                else if (loser == player1 && player2Advantage)
                 {
                     Debug.Log("Player 2 WINS");
                     PlayerPrefs.SetInt(DataUtils.playerScore2, 1);
@@ -93,16 +102,18 @@ namespace Rodrigo
                     player2Advantage = false;
                     player1Advantage = false;
                 }
-                else if(loser == player2)
+                else if (loser == player2)
                 {
                     player1Advantage = true;
                     player2Advantage = false;
                 }
-                else if(loser == player1)
+                else if (loser == player1)
                 {
                     player2Advantage = true;
                     player1Advantage = false;
                 }
+
+
 
                 Destroy(Players);
                 Players = Instantiate(PlayersPrefab);
@@ -119,15 +130,15 @@ namespace Rodrigo
                 Fader.FadeOut(() =>
                 {
                     // Debug.Log("FadeOut2");
-                   
+
                     // Debug.Log("Next Round");
                     currentRound++;
-                    roundNotificator.PlayAnimation(currentRound+1, () => Time.timeScale = 1);
+                    roundNotificator.PlayAnimation(currentRound + 1, () => Time.timeScale = 1);
 
                     onNextRound?.Invoke(currentRound);
                 });
             });
-            
+
         }
 
         public static void FinishGame()
@@ -139,7 +150,7 @@ namespace Rodrigo
         {
             onNextRound = null;
             onGameFinished = null;
-
+            StopAllCoroutines();
         }
     }
 }
