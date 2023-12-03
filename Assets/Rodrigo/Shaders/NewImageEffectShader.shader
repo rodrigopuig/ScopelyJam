@@ -3,6 +3,7 @@ Shader "Hidden/NewImageEffectShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Color ("Color", Color) = (1,1,1,1)
         _Offset ("Offset", Float) = 1
     }
     SubShader
@@ -41,11 +42,12 @@ Shader "Hidden/NewImageEffectShader"
 
             sampler2D _MainTex;
             float _Offset;
+            fixed4 _Color;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-                // just invert the colors
+                col *= _Color;
                 col.rgb = col.rgb + _Offset;
                 return col;
             }

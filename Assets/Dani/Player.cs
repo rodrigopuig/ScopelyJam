@@ -233,6 +233,14 @@ public class Player : MonoBehaviour
         }
         items.enabled = false;
 
+
+        Color color = Color.red;
+        DOTween.To(() => Color.white, x => color = x, Color.red, 0.3f).OnUpdate(() =>
+        {
+            foreach (var mat in mats)
+                mat.SetColor("_Color", color);
+        }).SetLoops(-1, LoopType.Yoyo);
+
         yield return new WaitForSeconds(1.5f);
 
         Debug.Log("GAME OVER");
