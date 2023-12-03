@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip fightSound;
     [SerializeField] AudioClip clashSound;
     [SerializeField] AudioClip walkSound;
+    [SerializeField] AudioClip musicSound;
     [SerializeField] AudioSource musicSC;
     AudioSource audioSC;
 
@@ -52,26 +53,52 @@ public class AudioManager : MonoBehaviour
 
     public void PlayButtonSound()
     {
-        audioSC.PlayOneShot(buttonSound);
+        PlaySound(buttonSound);
     }
     public void PlayHitSound()
     {
-        audioSC.PlayOneShot(hitSound);
+        PlaySound(hitSound, 1, 0.8f, 1.2f);
     }
     public void PlayPushSound()
     {
-        audioSC.PlayOneShot(pushSound);
+        PlaySound(pushSound);
     }
     public void PlayFightSound()
     {
-        audioSC.PlayOneShot(fightSound);
+        PlaySound(fightSound);
     }
     public void PlayClashSound()
     {
-        audioSC.PlayOneShot(clashSound);
+        PlaySound(clashSound);
     }
     public void PlayWalkSound()
     {
-        audioSC.PlayOneShot(walkSound);
+        PlaySound(walkSound, 1, 0.8f, 1.2f);
+    }
+
+    private void PlaySound(AudioClip original, float volume = 1, float minPitch = 1, float maxPitch = 1)
+    {
+        audioSC.volume = volume;
+        if (minPitch != 1 || maxPitch != 1)
+        {
+            audioSC.pitch = Random.Range(minPitch, maxPitch);
+        }
+        else
+        {
+            audioSC.pitch = 1;
+        }
+        audioSC.PlayOneShot(original);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            PlayWalkSound();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            PlayHitSound();
+        }
     }
 }

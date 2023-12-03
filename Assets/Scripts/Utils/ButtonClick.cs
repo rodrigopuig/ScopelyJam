@@ -16,7 +16,6 @@ public class ButtonClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"Button clicked");
         if (myButton.interactable && AudioManager.Instance != null) 
         {
             AudioManager.Instance.PlayButtonSound();
