@@ -18,4 +18,11 @@ public static class CoroutineUtils
 
         _action.Invoke();
     }
+
+    public static IEnumerator DoAfterDelayRealtime(float _time, System.Action _action)
+    {
+        yield return new WaitForSecondsRealtime(_time);
+
+        _action.Invoke();
+    }
 }
