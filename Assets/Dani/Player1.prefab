@@ -943,11 +943,11 @@ MonoBehaviour:
   extraWeightMultiplier: 2
   lessWeightMultiplier: 0.3
   attackImage: {fileID: 5177118602758273805}
-  attackColor: {r: 1, g: 0, b: 0, a: 1}
-  attackCDColor: {r: 1, g: 0, b: 0, a: 0.5529412}
+  attackColor: {r: 0.7169812, g: 0.1318975, b: 0.1318975, a: 1}
+  attackCDColor: {r: 0.7176471, g: 0.13333334, b: 0.13333334, a: 1}
   parryImage: {fileID: 6836016679913680718}
-  parryColor: {r: 1, g: 1, b: 0, a: 1}
-  parryCDColor: {r: 1, g: 1, b: 0, a: 0.50980395}
+  parryColor: {r: 0.6320754, g: 0.6320754, b: 0.10435206, a: 1}
+  parryCDColor: {r: 0.6313726, g: 0.6313726, b: 0.105882354, a: 1}
   parrying: 0
   sweatParticles: {fileID: 5583191919301014380}
   fishParticles: {fileID: 4682506964988547636}
